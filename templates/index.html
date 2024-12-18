@@ -1,0 +1,67 @@
+<!-- Om Ganeshay Namah  -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static '/style.css' %}">
+</head>
+
+<body>
+    <h1 class="header-txt">
+        "Bada screen m dekh gandu"
+    </h1>
+    <header>
+        <nav>
+            <div class="logo" id="himg">
+
+                <img src="{% static 'img/footer-logo.png' %}" alt="logo" width="112" height="28">
+
+            </div>
+            <div class="center" id="center">
+
+                <a class="nav-mid" href="#">HOME<span></span></a>
+                <a class="nav-mid" href="#">CAFE<span></span></a>
+                <a class="nav-mid" href="#">ABOUT <span></span></a>
+                <a class="nav-mid" href="#">SERVICES<span></span></a>
+
+            </div>
+            <div class="right">
+                <button class="nav-btn">Rental</button>
+                <button class="nav-btn">Contact</button>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="bg-img-wrapper">
+            <div class="mimg" , class="main1">
+                <img src="{% static 'img/slide-1.jpg' %}" class="bg-img" alt="">
+                <img src="{% static 'img/red-mark.png' %}" alt="error" id="red-mark" />
+            </div>
+            
+            <div id="apex-game-img">
+                <img src="{% static 'img/apex.jpg' %}" class="game-img" alt="">
+            </div>
+            <div id="war-game-img">
+                <img src="{% static 'img/warzone.jpg' %}" class="game-img" alt="">
+            </div>
+            <div id="dota-game-img">
+                <img src="{% static 'img/dota.jpg' %}" class="game-img" alt="">
+            </div>
+            <div id="counter-game-img">
+                <img src="{% static 'img/csgo.jpg' %}" class="game-img" alt="">
+            </div>
+            <div id="val-game-img">
+                <img src="{% static 'img/valorant2.jpg' %}" class="game-img" alt="">
+            </div>
+        </div>
+       
+    </main>
+
+    <script src="{% static 'script.js' %}"></script>
+</body>
+
+</html>
