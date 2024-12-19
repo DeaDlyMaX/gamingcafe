@@ -198,10 +198,10 @@ main .mimg .bg-img {
     height: auto;
 
 }
-#val-game-img img{
+/* #val-game-img img{
     height: auto;
-    width: 210px;
-}
+    width: 210px; 
+}*/
 
 
 @media screen and (max-width: 800px){
