@@ -126,6 +126,12 @@ nav button.nav-btn {
 }
 
 .mimg {
+    position: absolute;
+}
+
+.c-img-designs{
+    height: 50vh;
+    width: 100vw;
     position: relative;
 }
 
@@ -156,7 +162,7 @@ main .mimg .bg-img {
 #apex-game-img {
     position: absolute;
     transform: rotate(-30deg);
-    top: 10rem;
+    top: 5rem;
     left: 2rem;
     width: fit-content;
     height: auto;
@@ -165,8 +171,8 @@ main .mimg .bg-img {
 #war-game-img {
     position: absolute;
     transform: rotate(-15deg);
-    top: 23vh;
-    left: 18vw;
+    top: 13vh;
+    left: 23vw;
     width: fit-content;
     height: auto;
 }
@@ -174,8 +180,8 @@ main .mimg .bg-img {
 #dota-game-img {
     position: absolute;
     transform: rotate(10deg);
-    top: 14rem;
-    left: 39rem;
+    top: 8rem;
+    right: 28rem;
     width: fit-content;
     height: auto;
 }
@@ -183,8 +189,8 @@ main .mimg .bg-img {
 #counter-game-img {
     position: absolute;
     transform: rotate(20deg);
-    top: 12rem;
-    left: 59rem;
+    top: 5rem;
+    right: 6rem;
     width: fit-content;
     height: auto;
 }
@@ -192,7 +198,7 @@ main .mimg .bg-img {
 #val-game-img {
     position: absolute;
     transform: rotate(-13deg);
-    top: 26rem;
+    top: 22rem;
     right: 8rem;
     width: fit-content;
     height: auto;
@@ -205,7 +211,7 @@ main .mimg .bg-img {
 }
 
 
-@media screen and (max-width: 800px) {
+/* @media screen and (max-width: 800px) {
 
     header,
     main {
@@ -277,3 +283,50 @@ main .mimg .bg-img {
         height: auto;
     }
 }
+
+@media screen and (max-width: 1200px) and (min-width: 1000px){
+    #apex-game-img {
+        position: absolute;
+        transform: rotate(-25deg);
+        top: 11rem;
+        left: 2rem;
+        width: fit-content;
+        height: auto;
+    }
+
+    #war-game-img {
+        position: absolute;
+        transform: rotate(-15deg);
+        top: 23vh;
+        left: 28vw;
+        width: fit-content;
+        height: auto;
+    }
+
+    #dota-game-img {
+        position: absolute;
+        transform: rotate(10deg);
+        top: 13rem;
+        left: 31rem;
+        width: fit-content;
+        height: auto;
+    }
+
+    #counter-game-img {
+        position: absolute;
+        transform: rotate(15deg);
+        top: 12rem;
+        left: 54rem;
+        width: fit-content;
+        height: auto;
+    }
+
+    #val-game-img {
+        position: absolute;
+        transform: rotate(-13deg);
+        top: 26rem;
+        right: 10.5rem;
+        width: fit-content;
+        height: auto;
+    }
+} */
