@@ -36,11 +36,10 @@
         </nav>
     </header>
     <main>
-        <div class="bg-img-wrapper">
+        <section class="bg-img-wrapper" style="padding: 0;">
             <div class="mimg" , class="main1">
                 <img src="{% static 'img/slide-1.jpg' %}" class="bg-img" alt="">
             </div>
-            
             <div class="c-img-designs">
                 <img src="{% static 'img/red-mark.png' %}" alt="error" id="red-mark" />
                 <div id="apex-game-img">
@@ -59,9 +58,89 @@
                     <img src="{% static 'img/valorant2.jpg' %}" class="game-img" alt="">
                 </div>
             </div>
-            
-        </div>
-       <div style="background-image: url(`{% static 'img/valorant2.jpg' %}`)"></div>
+        </section>
+        <section id="dark-bg-img">
+            <h2 class="title">Our Gaming <span style="color: red;"> Cafe's</span></h2>
+            <p>Cafe</p>
+            <div class="img-gallery">
+                <div class="imgs"><img src="{% static 'img/1.jpg' %}" alt=""></div>
+                <div class="imgs"><img src="{% static 'img/2.jpg' %}" alt=""></div>
+                <div class="imgs"><img src="{% static 'img/3.jpg' %}" alt=""></div>
+                <div class="imgs"><img src="{% static 'img/4.jpg' %}" alt=""></div>
+                <div class="imgs"><img src="{% static 'img/5.jpg' %}" alt=""></div>
+                <div class="imgs"><img src="{% static 'img/6.jpg' %}" alt=""></div>
+            </div>
+        </section>
+        <script>
+            let url = "{% static 'img/dark-bg.jpg' %}";
+            document.getElementById('dark-bg-img').style.backgroundImage = `url('${url}')`;
+            </script>
+        <section id="our-services">
+            <h2 class="os-title">Our <span style="color: red;"> Services</span></h2>
+            <div class="s-wrapper">
+                <div class="services">
+                    <img src="{% static 'img/os1.png' %}" alt="">
+                    <p class="title">Gaming Cafe</p>
+                    <p class="desc">We provide two tiers of cafe experiences: Express and Flagship. Our very first Flagship cafe was launched at Juhu Circle in Mumbai.</p>
+                </div>
+                <div class="services">
+                    <img src="{% static 'img/os1.png' %}" alt="">
+                    <p class="title">Gaming Cafe</p>
+                    <p class="desc">We provide two tiers of cafe experiences: Express and Flagship. Our very first Flagship cafe was launched at Juhu Circle in Mumbai.</p>
+                </div>
+                <div class="services">
+                    <img src="{% static 'img/os1.png' %}" alt="">
+                    <p class="title">Gaming Cafe</p>
+                    <p class="desc">Experience the thrill of high-speed racing at our gaming cafe, where you can take control of authentic racing wheel simulators for an immersive and adrenaline-pumping gaming experience like no other.</p>
+                </div>
+                <div class="services">
+                    <img src="{% static 'img/os1.png' %}" alt="">
+                    <p class="title">Gaming Cafe</p>
+                    <p class="desc">We provide two tiers of cafe experiences: Express and Flagship. Our very first Flagship cafe was launched at Juhu Circle in Mumbai.</p>
+                </div>
+            </div>
+            <div class="s-wrapper">
+                <div class="services">
+                    <img src="{% static 'img/os1.png' %}" alt="">
+                    <p class="title">Gaming Cafe</p>
+                    <p class="desc">Our gaming cafes boast cutting-edge streaming rooms equipped with the latest technology, providing gamers with the perfect environment to stream and go live, taking their gaming experience to the next level.</p>
+                </div>
+                <div class="services">
+                    <img src="{% static 'img/os1.png' %}" alt="">
+                    <p class="title">Gaming Cafe</p>
+                    <p class="desc">We provide two tiers of cafe experiences: Express and Flagship. Our very first Flagship cafe was launched at Juhu Circle in Mumbai.</p>
+                </div>
+                <div class="services">
+                    <img src="{% static 'img/os1.png' %}" alt="">
+                    <p class="title">Gaming Cafe</p>
+                    <p class="desc">We provide two tiers of cafe experiences: Express and Flagship. Our very first Flagship cafe was launched at Juhu Circle in Mumbai.</p>
+                </div>
+                <div class="services">
+                    <img src="{% static 'img/os1.png' %}" alt="">
+                    <p class="title">Gaming Cafe</p>
+                    <p class="desc">We provide two tiers of cafe experiences: Express and Flagship. Our very first Flagship cafe was launched at Juhu Circle in Mumbai.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="brand-bg-img" style="min-height: 70vh; display: flex; justify-content: end; align-items: center;">
+            <div style="width: 40%; display: flex; flex-direction: column; gap: 18px;">
+                <p class="bbi-title">Brand <span style="color: red;">Integrations</span></p>
+                <p class="bbi-desc">Our cafes also offer a range of marketing activities for the brands who would like to come onboard as sponsors for the cafes. The offering which we would have are :-</p>
+                <ul class="bbi-ul">
+                    <li>Powered by game zones</li>
+                    <li>Display area for products</li>
+                    <li>Branding space</li>
+                    <li>Streaming room integrations</li>
+                    <li>Experience zone &amp; Workshops</li>
+                    <li>Powered by tournaments</li>
+                </ul>
+            </div>
+        </section>
+        <script>
+            url = "{% static 'img/brand-bg.jpg' %}";
+            document.getElementById('brand-bg-img').style.backgroundImage = `url('${url}')`;
+        </script>
     </main>
 
     <script src="{% static 'script.js' %}"></script>
