@@ -1,0 +1,3 @@
+create a file
+go to views.py and create  a function (syntax same just change the file name)
+go to urls.py - specify path.... any endpoint... views.yourfunction {syntax same}
