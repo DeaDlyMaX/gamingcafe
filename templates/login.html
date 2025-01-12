@@ -3,11 +3,72 @@
 
 <!-- change content -->
 {% block title %}Login - hathi{% endblock title %}
+{% load static %}
 {% block body %}
 <!-- change content  -->
-<form action="">
-    <input type="text" placeholder="enter name">
-    <input type="submit" />
-</form>
+<link rel="stylesheet" href="{% static 'style1.css' %}">
+<link rel="stylesheet" href="http://fonts.googleapis.com/css2?family=jost:wght@500&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+<nav>
+    <div class="logo" id="himg">
+
+        <img src="{% static 'img/footer-logo.png' %}" alt="logo" class="brand-img" width="112" height="28">
+
+    </div>
+    <div class="center" id="center">
+
+        <a class="nav-mid" href="#">HOME<span></span></a>
+        <a class="nav-mid" href="#">CAFE<span></span></a>
+        <a class="nav-mid" href="#">ABOUT <span></span></a>
+        <a class="nav-mid" href="#">SERVICES<span></span></a>
+        
+
+    </div>
+    <div class="right">
+        <button class="nav-btn" style="color: black;">Rental</button>
+        <button class="nav-btn" style="color: black;">Contact <i  class="fa-regular fa-envelope"></i> </a></button>
+    </div>
+</nav>
+
+<section class="login-main">
+    <img src="{% static 'img/controler.jpeg' %}" alt="" class="main-img" style="z-index: -1;">
+
+    <div class="main-1">
+        <input type="checkbox" id="chk" aria-hidden="true">
+
+        <div class="singup">
+            <form>
+                <label for="chk" aria-hidden="true"><span style="color: black;">Sing</span> <span
+                        style="color: red;">Up</span></label>
+                <input type="text" name="txt" placeholder="User name" required="">
+                <input type="email" name="email" placeholder="Email" required="">
+                <input type="password" name="pswd" placeholder="Password" required="">
+                <button style="color: black;">Sing Up</button>
+            </form>
+        </div>
+
+        <div class="login">
+            <img src="{% static 'img/controler.jpeg' %}" alt="">
+            <form>
+                <label for="chk" aria-hidden="true">Log<span style="color:#151515 ;">In</span></label>
+                <input type="email" name="email" placeholder="Email" required="">
+                <input type="password" name="pswd" placeholder="Password" required="">
+                <button style="color: #151515;">Login</button>
+            </form>
+        </div>
+
+    </div>
+   
+</section>
+<!-- <footer>
+    <div>
+        <img src="{% static 'img/footer-logo.png' %}" alt="logo">
+    </div>
+    <div>
+        <p style="color: aliceblue;">Creating an affordable and accessible gaming ecosystem</p>
+    </div>
+</footer> -->
+
 
 {% endblock body %}
