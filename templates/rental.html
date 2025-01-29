@@ -1,0 +1,298 @@
+{% extends "base.html" %}
+{% block body %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'rental.css' %}">
+<script src="https://cdn.tailwindcss.com"></script>
+{% include "components/navbar.html" %}
+<div id="overlay" style="display: none;height: 100vh; width: 100vw; z-index: 5; background-color: rgba(0, 0, 0, 0.541);"></div>
+<div id="bill" class="bill-container">
+    <img src="logo.png" alt="Website Logo">
+    <h3>Booking Receipt</h3>
+    <div class="bill-details">
+        <p><strong>Transaction ID:</strong> <span id="transaction-id"></span></p>
+        <p><strong>User ID:</strong> <span id="user-id"></span></p>
+        <p><strong>Slot Number:</strong> <span id="slot-number"></span></p>
+        <p><strong>Start Time:</strong> <span id="bill-start-time"></span></p>
+        <p><strong>End Time:</strong> <span id="bill-end-time"></span></p>
+        <p><strong>Duration:</strong> <span id="bill-duration"></span> hours</p>
+        <p><strong>Total Amount:</strong> ₹<span id="bill-amount"></span></p>
+        <p><strong>Payment Time & Date:</strong> <span id="payment-time"></span></p>
+    </div>
+</div>
+<main>
+    <section id="rent-home">
+        <div class="float_img">
+            <img src="{% static 'img/xbox_cross-removebg-1.png' %}" alt="">
+        </div>
+        <div class="rent-home-div1">
+            <button class="animate__animated animate__bounceIn" style="animation-delay: 0.5s;"><a href="#rent-pc-console">Rent Console</a></button>
+        </div>
+
+        <div class="rent-home-div2">
+            <p class="rental-1 animate__animated animate__bounceInLeft" style="color: white; animation-delay: 0.3s;">Ren<span style="color: red;">tal</span></p>
+            <p class="rental-2 animate__animated animate__bounceInRight" style="color: white; animation-delay: 0.3s;">Ser<span style="color: red;">vice</span></p>
+        </div>
+    </section>
+
+    <script>
+        url = "{% static 'img/rent-home-1.jpg' %}";
+        document.getElementById('rent-home').style.backgroundImage = `url('${url}')`;
+    </script>
+
+    <section id="rent-pc-console">
+        <h2 class="pc-console-1" style="color: white;">Con<span style="color: red;">sole</span></h2>
+        <p class="info">Access to the latest console games without needing to buy the hardware and getting high-spec
+            systems to experience hight Level games</p>
+        <div class="box">
+           
+            <div class="box2" id="ps5">
+                <img src="{% static 'img/ps55.png' %}" alt="mission">
+                <h2>PS5</h2>
+                <ul>
+                    <li>HDD 825GB PCie Gen 4 NVMe SSD.</li>
+                    <li>Processor Custom 8-core AMD Zen 2 CPU </li>
+                    <li>Graphics Custom AMD RDNA 2 GPU 36 CUs </li>
+                    <li>RAM 16GB GDDR6.</li>
+                    <li>2 DualSense wireless controller</li>
+                </ul>
+                <div class="avl flex items-center justify-between mt-6"><span>Available</span> <span
+                        class="avl-span mr-[85px]">5</span></div>
+                <div class="rental-day flex items-center justify-between mt-4">
+                    <span>Days:</span>
+                    <div class="counter-container">
+                        <button class="button" id="decrement" onclick="incDec(this, 'dec', 'days')">-</button>
+                        <div class="number-display num-val" id="number">3</div>
+                        <button class="button" id="increment" onclick="incDec(this, 'inc', 'days')">+</button>
+                    </div>
+                </div>
+                <div class="rental-day flex items-center justify-between mt-2">
+                    <span>Controller:</span>
+                    <div class="counter-container">
+                        <button class="button" id="decrement" onclick="incDec(this, 'dec', 'cntlr')">-</button>
+                        <div class="number-display num-val" id="number">0</div>
+                        <button class="button" id="increment" onclick="incDec(this, 'inc', 'cntlr')">+</button>
+                    </div>
+                </div>
+                <div class="avlbt w-full p-2 mt-8">
+                    <button onclick="saveBooking(this, 'PS5')"><span>3000</span></button>
+                </div>
+            </div>
+
+
+            <div class="box3" id="xbox">
+                <img src="{% static 'img/xbox.png' %}" alt="">
+                <h2>XBOX</h2>
+                <ul>
+                    <li>1 TB PCIe Gen 4 NVME SSD</li>
+                    <li>PROCESSOR. CPU. 8X Cores @ 3.8 GHz</li>
+                    <li> AMD RDNA 2 GPU with 52 compute units </li>
+                    <li>RAM 16 GB of GDDR6 </li>
+                    <li>2 DualSense wireless controller</li>
+                </ul>
+                <div class="avl flex items-center justify-between mt-6"><span>Available</span> <span
+                        class="avl-span mr-[85px]">5</span></div>
+                <div class="rental-day flex items-center justify-between mt-4">
+                    <span>Days:</span>
+                    <div class="counter-container">
+                        <button class="button" id="decrement" onclick="incDec(this, 'dec', 'days')">-</button>
+                        <div class="number-display num-val" id="number">3</div>
+                        <button class="button" id="increment" onclick="incDec(this, 'inc', 'days')">+</button>
+                    </div>
+                </div>
+                <div class="rental-day flex items-center justify-between mt-2">
+                    <span>Controller:</span>
+                    <div class="counter-container">
+                        <button class="button" id="decrement" onclick="incDec(this, 'dec', 'cntlr')">-</button>
+                        <div class="number-display num-val" id="number">0</div>
+                        <button class="button" id="increment" onclick="incDec(this, 'inc', 'cntlr')">+</button>
+                    </div>
+                </div>
+                <div class="avlbt w-full p-2 mt-8">
+                    <button onclick="saveBooking(this, 'XBOX')"><span>3000</span></button>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <script>
+        url = "{% static 'img/about-bg.jpg' %}";
+        document.getElementById('rent-pc-console').style.backgroundImage = `url('${url}')`;
+    </script>
+
+    <section id="our-services" style="background-image: url(dark-bg.jpg);">
+        <h2 class="os-title">Our <span style="color: red;"> Services</span></h2>
+        <div class="s-wrapper">
+            <div class="services">
+                <img src="{% static 'img/os1.png' %}" alt="">
+                <p class="title">Gaming Cafe</p>
+                <p class="desc">We provide two tiers of cafe experiences: Express and Flagship. Our very first
+                    Flagship cafe was launched at Juhu Circle in Mumbai.</p>
+            </div>
+            <div class="services">
+                <img src="{% static 'img/os1.png' %}" alt="">
+                <p class="title">Gaming Cafe</p>
+                <p class="desc">We provide two tiers of cafe experiences: Express and Flagship. Our very first
+                    Flagship cafe was launched at Juhu Circle in Mumbai.</p>
+            </div>
+            <div class="services">
+                <img src="{% static 'img/os1.png' %}" alt="">
+                <p class="title">Gaming Cafe</p>
+                <p class="desc">Experience the thrill of high-speed racing at our gaming cafe, where you can take
+                    control of authentic racing wheel simulators.</p>
+            </div>
+            <div class="services">
+                <img src="{% static 'img/os1.png' %}" alt="">
+                <p class="title">Gaming Cafe</p>
+                <p class="desc">We provide two tiers of cafe experiences: Express and Flagship. Our very first
+                    Flagship cafe was launched at Juhu Circle in Mumbai.</p>
+            </div>
+        </div>
+        <div class="s-wrapper">
+            <div class="services">
+                <img src="{% static 'img/os1.png' %}" alt="">
+                <p class="title">Gaming Cafe</p>
+                <p class="desc">Our gaming cafes boast cutting-edge streaming rooms equipped with the latest
+                    technology, providing gamers with the perfect environment to stream and go live.</p>
+            </div>
+            <div class="services">
+                <img src="{% static 'img/os1.png' %}" alt="">
+                <p class="title">Gaming Cafe</p>
+                <p class="desc">We provide two tiers of cafe experiences: Express and Flagship. Our very first
+                    Flagship cafe was launched at Juhu Circle in Mumbai.</p>
+            </div>
+            <div class="services">
+                <img src="{% static 'img/os1.png' %}" alt="">
+                <p class="title">Gaming Cafe</p>
+                <p class="desc">We provide two tiers of cafe experiences: Express and Flagship. Our very first
+                    Flagship cafe was launched at Juhu Circle in Mumbai.</p>
+            </div>
+            <div class="services">
+                <img src="{% static 'img/os1.png' %}" alt="">
+                <p class="title">Gaming Cafe</p>
+                <p class="desc">We provide two tiers of cafe experiences: Express and Flagship. Our very first
+                    Flagship cafe was launched at Juhu Circle in Mumbai.</p>
+            </div>
+        </div>
+    </section>
+    <script>
+        url = "{% static 'img/dark-bg.jpg' %}";
+        document.getElementById('our-services').style.backgroundImage = `url('${url}')`;
+    </script>
+</main>
+<footer>
+    <section id="footer-final">
+        <div class="main-div">
+            <div class="img-1">
+                <img src="{% static 'img/footer-logo.png' %}" alt="logo">
+            </div>
+            <div class="info-1">
+                <p>Creating an affordable and accessible gaming ecosystem</p>
+            </div>
+        </div>
+    </section>
+    <script>
+        url = "{% static 'img/dark-bg.jpg' %}";
+        document.getElementById('footer-final').style.backgroundImage = `url('${url}')`;
+    </script>
+</footer>
+<script>
+    function incDec(elem, oprn, type) {
+        let numVal = elem.parentElement.querySelector(".num-val");
+        console.log(numVal)
+        let currentVal = Number(numVal.innerText)
+        let payBtn = elem.parentElement.parentElement.parentElement.querySelector(".avlbt span");
+        let payAmt = Number(payBtn.innerText);
+        switch (oprn) {
+            case "inc":
+                if (type == "cntlr") {
+                    if (currentVal < 4) {
+                        currentVal++
+                        payAmt += 200;
+                    }
+                }
+                else if (type == "days") {
+                    currentVal++;
+                    payAmt += 1000;
+                }
+                break;
+            case "dec":
+                if (type == "cntlr") {
+                    if (currentVal > 0) {
+                        currentVal--
+                        payAmt -= 200;
+                    }
+                } else if (type == 'days') {
+                    if (currentVal >= 4) {
+                        currentVal--
+                        payAmt -= 1000;
+                    }
+                }
+                break;
+
+            default:
+                alert("invalid")
+                break;
+        }
+        numVal.innerText = currentVal;
+        payBtn.innerText = payAmt;
+    }
+
+    function saveBooking(elem, type) {
+        console.log(elem)
+        console.log(type)
+        // Fetch data from the HTML
+        let parent = elem.parentElement.parentElement;
+        const days = parent.querySelector("#number").innerText;
+        const controllers = parent.querySelectorAll(".num-val")[1].innerText;
+        const amount = parent.querySelector(".avlbt span").innerText;
+
+        // Replace with the actual logged-in user ID
+        const userId = "{{user.id}}";
+
+        // Send data to the backend
+        fetch("/save-booking/", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRFToken": getCookie('csrftoken') // CSRF token for Django
+            },
+            body: JSON.stringify({
+                user_id: userId,
+                days: days,
+                console: type,
+                controllers: controllers,
+                amount: amount
+            })
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert("Booking saved successfully!");
+                    console.log(data)
+                } else {
+                    alert("Error: " + data.error);
+                }
+            })
+            .catch(error => console.error("Error:", error));
+    }
+
+    // Helper function to get CSRF token
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+
+</script>
+
+{% endblock body %}

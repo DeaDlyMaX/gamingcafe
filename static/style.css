@@ -2,15 +2,18 @@ body {
     background-color: #4A4A4A;
     font-family: "Poppins", sans-serif;
     overflow-x: hidden;
+
 }
 
 * {
     padding: 0%;
     margin: 0%;
     box-sizing: border-box;
+    scroll-behavior: smooth;
+    transition: 0.4s;
 }
 
-section{
+section {
     min-height: 100vh;
     width: 100vw;
     height: fit-content;
@@ -20,7 +23,7 @@ section{
     color: white;
 }
 
-section#dark-bg-img{
+section#dark-bg-img {
     color: white;
     padding: 4rem;
     background-repeat: no-repeat;
@@ -35,13 +38,15 @@ section#dark-bg-img{
 nav {
     display: flex;
     height: 4em;
-    justify-content: space-around;
+    justify-content: space-evenly;
     align-items: center;
     font-size: 1.4em;
     background-color: rgb(0, 0, 0);
     padding: 0%;
     margin: 0%;
     width: 100vw;
+    position: fixed;
+    z-index: 2;
 }
 
 nav .center {
@@ -116,30 +121,45 @@ nav button.nav-btn {
     border-radius: 99px;
     font-size: 17px;
     height: 3em;
-    width: 46%;
+    width: 160px;
     padding: 2px 8px;
     outline: none;
     border: none;
+    margin-top: 7px;
+    
+}
+
+button:hover{
+    background-color: red;
 }
 
 .right {
     display: flex;
-    width: 30%;
+    width: 17%;
     justify-content: space-between;
+    align-items: center;
+    gap: 10px
+}
+
+.btn-user{
+    
+    height: 2.2em;
+    width: fit-content;
+    padding: 10px;
+    border: none;
 }
 
 .right a {
-    width: 40%;
+    width: 22%;
 }
 
-.right img {
-    height: 20px;
-    width: 20px;
-}
+
 
 .right img {
-    padding: 4px;
+    padding: 0%;
     margin: 0%;
+    margin-left: 40px;
+    height: 54px;
 }
 
 .main1 {
@@ -151,7 +171,7 @@ nav button.nav-btn {
     top: 0px;
 }
 
-.c-img-designs{
+.c-img-designs {
     height: 50vh;
     width: 100vw;
     position: relative;
@@ -173,13 +193,53 @@ main .mimg .bg-img {
     height: auto;
 }
 
+.gaming {
+    font-weight: 900;
+    position: absolute;
+    left: 3%;
+    top: 95%;
+    font-size: 150px;
+    filter: drop-shadow(0 1rem 2rem black);
+}
+
+.cafe{
+    font-weight: 900;
+    position: absolute;
+    left: 3.5%;
+    top: 115%;
+    font-size: 245px;
+    filter: drop-shadow(0 1rem 2rem black);
+}
+
+.book-btn button{
+    position: absolute;
+    top: 167%;
+    right: 38%;
+    background-color: white;
+    color: black;
+    border-radius: 20px;
+    font-size: 30px;
+    font-weight: bold;
+    height: 3em;
+    width: 20%;
+    padding: 2px 8px;
+    outline: none;
+    border: none;
+    position: absolute;
+    box-shadow: 0px 1px 30px 10px rgba(0, 0, 0, 0.52);
+}
+
 .game-img {
     border-radius: 20px;
     box-shadow: 0px 1px 30px 10px rgba(0, 0, 0, 0.52);
-    height: 196px;
-    width: 136px;
-
+    height: 320px;
+    width: 230px;
 }
+
+.dropdown-toggle::after {
+    display: none;
+}
+
 
 #apex-game-img {
     position: absolute;
@@ -193,8 +253,8 @@ main .mimg .bg-img {
 #war-game-img {
     position: absolute;
     transform: rotate(-15deg);
-    top: 13vh;
-    left: 23vw;
+    top: 12vh;
+    left: 29vw;
     width: fit-content;
     height: auto;
 }
@@ -202,8 +262,8 @@ main .mimg .bg-img {
 #dota-game-img {
     position: absolute;
     transform: rotate(10deg);
-    top: 8rem;
-    right: 28rem;
+    top: 9rem;
+    right: 36rem;
     width: fit-content;
     height: auto;
 }
@@ -211,17 +271,17 @@ main .mimg .bg-img {
 #counter-game-img {
     position: absolute;
     transform: rotate(20deg);
-    top: 5rem;
-    right: 6rem;
+    top: 7rem;
+    right: 8rem;
     width: fit-content;
     height: auto;
 }
 
 #val-game-img {
     position: absolute;
-    transform: rotate(-13deg);
-    top: 22rem;
-    right: 8rem;
+    transform: rotate(-20deg);
+    top: 30rem;
+    right: 18rem;
     width: fit-content;
     height: auto;
 
@@ -229,17 +289,18 @@ main .mimg .bg-img {
 
 #val-game-img img {
     height: auto;
-    width: 210px;
+    width: 295px;
 }
 
 /* second section  */
 
-#dark-bg-img h2{
+#dark-bg-img h2 {
     font-size: 3rem;
     font-weight: 800;
     margin-bottom: 3rem;
 }
-#dark-bg-img p{
+
+#dark-bg-img p {
     width: fit-content;
     font-size: 2rem;
     font-weight: 400;
@@ -248,19 +309,19 @@ main .mimg .bg-img {
     border-bottom: 2px solid red;
 }
 
-.img-gallery{
+.img-gallery {
     display: flex;
     gap: 32px;
     justify-content: space-between;
     flex-wrap: wrap;
 }
 
-.img-gallery .imgs{
+.img-gallery .imgs {
     width: 475px;
     height: auto;
 }
 
-.img-gallery .imgs img{
+.img-gallery .imgs img {
     width: 100%;
     height: auto;
     border-radius: 32px;
@@ -268,14 +329,16 @@ main .mimg .bg-img {
 
 /* services  */
 
-#our-services{
+#our-services {
     background-repeat: no-repeat;
     background-size: cover;
 }
-.s-wrapper{
+
+.s-wrapper {
     display: flex;
 }
-.services{
+
+.services {
     height: 100%;
     background: rgba(0, 0, 0, 0.1);
     padding: 30px;
@@ -286,30 +349,34 @@ main .mimg .bg-img {
     text-align: center;
     width: 25%;
 }
-#our-services .os-title{
+
+#our-services .os-title {
     font-size: 3rem;
     font-weight: 800;
     text-align: center;
     margin-bottom: 2rem;
-    
+
 }
-#our-services .services img{
+
+#our-services .services img {
     filter: invert(1);
     opacity: 0.2;
     transition: all cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.5s;
     margin-bottom: 1.5rem;
     height: 64px;
     width: 64px;
-    
+
 }
-#our-services .services .title{
+
+#our-services .services .title {
     font-weight: 500;
     text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.525);
     margin-bottom: 1rem;
     color: #fff;
     font-size: 1.25rem;
 }
-#our-services .services .desc{
+
+#our-services .services .desc {
     font-size: 16px;
     font-weight: 300;
     color: #bab9b9;
@@ -317,26 +384,30 @@ main .mimg .bg-img {
     line-height: 1.5;
 }
 
-.services:hover > .services img{
+.services:hover>.services img {
     transform: scale(1.3);
 }
 
-.bbi-title{
+.bbi-title {
     font-size: 3rem;
     font-weight: 700;
 }
-.bbi-desc{
+
+.bbi-desc {
     font-size: 1rem;
     line-height: 1.5;
 }
-.bbi-ul{
+
+.bbi-ul {
     list-style: none;
     font-size: 18px;
 }
-.bbi-ul li{
+
+.bbi-ul li {
     margin-bottom: 18px;
 }
-.bbi-ul li::before{
+
+.bbi-ul li::before {
     margin-right: 1rem;
     width: 7px;
     height: 7px;
@@ -346,49 +417,54 @@ main .mimg .bg-img {
     border-radius: 50%;
 }
 
-#dark-bg-img{
-background-repeat: no-repeat;
+#dark-bg-img {
+    background-repeat: no-repeat;
 
 }
 
-#brand-bg-img{
+#brand-bg-img {
 
     background-size: cover;
 }
 
-#about-us{
+#about-us {
     font-size: 3rem;
     font-weight: 800;
     margin-bottom: 3rem;
     text-align: center;
     padding: 7rem;
-    margin:0% ;
+    margin: 0%;
     background-repeat: no-repeat;
     background-size: cover;
-   
+
 }
 
-.about-info{
+.about-info {
     font-weight: normal;
     font-size: 1.5rem;
     margin-bottom: 1.1rem;
 }
 
-.about-info-2{
+.about-info-2 {
     margin-bottom: 2rem;
 }
-.au-title{
+
+.au-title {
     margin-bottom: 2rem;
+    font-size: 3rem;
+    font-weight: 800;
+    text-align: center;
 
 }
 
-.box{
+.box {
     display: flex;
     justify-content: center;
     gap: 50px;
     margin-top: 6rem;
 }
-.box1{
+
+.box1 {
     background: rgba(0, 0, 0, 0.09);
     padding: 30px;
     border-radius: 20px;
@@ -398,10 +474,10 @@ background-repeat: no-repeat;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.14);
     font-size: 1.3rem;
     font-weight: normal;
-    
+
 }
 
-.box2{
+.box2 {
     background: rgba(0, 0, 0, 0.09);
     padding: 30px;
     border-radius: 20px;
@@ -413,18 +489,18 @@ background-repeat: no-repeat;
     font-weight: normal;
 }
 
-.box img{
+.box img {
     height: 64px;
     width: 64px;
     margin-bottom: 1.5rem;
 }
 
-.box  h2{
+.box h2 {
     margin-bottom: 1.5rem;
 }
 
-.box div{
-    height: 40vh;
+.box div {
+    height: 55vh;
     width: 46vh;
 }
 
@@ -432,15 +508,15 @@ background-repeat: no-repeat;
     min-height: 40vh;
     background-repeat: no-repeat;
     background-size: cover;
-    
+
 }
 
-.footer-info{
+.footer-info {
     display: flex;
     justify-content: space-between;
 }
 
-.outrow-1 img{
+.outrow-1 img {
     transition: cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.5s;
     cursor: pointer;
 }
@@ -566,7 +642,7 @@ background-repeat: no-repeat;
 } */
 
 @media screen and (min-width: 2123px) {
-    .extr-img{
+    .extr-img {
         display: none;
     }
 }

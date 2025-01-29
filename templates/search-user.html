@@ -1,0 +1,225 @@
+{% extends "base.html" %}
+
+{% block title %}
+  Search User
+{% endblock title %}
+
+{% block body %}
+<style>
+    body {
+        background-color: #f3f4f6;
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+    }
+    .container {
+        width: 100%;
+        max-width: 400px;
+        background: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+    }
+    h1 {
+        font-size: 24px;
+        font-weight: bold;
+        color: #333333;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    label {
+        font-size: 14px;
+        color: #555555;
+        margin-bottom: 8px;
+        display: block;
+    }
+    input[type="text"] {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #cccccc;
+        border-radius: 4px;
+        font-size: 14px;
+        margin-bottom: 20px;
+        box-sizing: border-box;
+    }
+    button {
+        width: 100%;
+        padding: 10px;
+        background-color: #007BFF;
+        color: #ffffff;
+        border: none;
+        border-radius: 4px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    button:hover {
+        background-color: #0056b3;
+    }
+    #results {
+        margin-top: 20px;
+        display: none;
+    }
+    #results h2 {
+        font-size: 18px;
+        font-weight: bold;
+        color: #333333;
+        margin-bottom: 10px;
+    }
+    #results ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
+    #results li {
+        padding: 10px;
+        background-color: #f9f9f9;
+        border: 1px solid #dddddd;
+        border-radius: 4px;
+        margin-bottom: 10px;
+    }
+    #results li p {
+        margin: 0;
+        color: #555555;
+    }
+    #results li p:first-child {
+        font-weight: bold;
+        color: #333333;
+    }
+</style>
+
+<div class="container">
+    <h1>Search for Users</h1>
+
+    <!-- Input Field and Button -->
+    <label for="username">Username</label>
+    <input 
+        type="text" 
+        id="username" 
+        placeholder="Enter username">
+
+    <button onclick="searchUser()">Search</button>
+
+    <!-- Results Section -->
+    <div id="results">
+        <h2>Search Results</h2>
+        <ul id="results-list"></ul>
+    </div>
+</div>
+
+<div class="container">
+    <h1>Search Users</h1>
+    <label for="start-date">Start Date</label>
+    <input type="date" id="start-date">
+
+    <label for="end-date">End Date</label>
+    <input type="date" id="end-date">
+
+    <button onclick="searchUsers()">Search</button>
+
+    <div id="res">
+    </div>
+</div>
+
+
+<script>
+    function formatLastLogin(timestamp) {
+    const date = new Date(timestamp);
+
+    // Extract hours and minutes in the desired format
+    const hours = date.getHours().toString().padStart(2, '0');
+    const minutes = date.getMinutes().toString().padStart(2, '0');
+
+    // Extract day, month, and year
+    const day = date.getDate().toString().padStart(2, '0');
+    const month = date.toLocaleString('default', { month: 'short' }); // e.g., "Jan"
+    const year = date.getFullYear().toString().slice(-2); // Last 2 digits of the year
+
+    // Combine them into the desired format
+    return `${hours}:${minutes} | ${day} ${month}, ${year}`;
+}
+async function searchUsers() {
+            const startDate = document.getElementById('start-date').value;
+            const endDate = document.getElementById('end-date').value;
+            const resultsDiv = document.getElementById('res');
+
+            // Clear previous results
+            resultsDiv.innerHTML = '';
+
+            if (!startDate || !endDate) {
+                alert('Please select both start and end dates.');
+                return;
+            }
+
+            try {
+                // Make the API request
+                const response = await fetch(`/users-by-date/?start_date=${startDate}&end_date=${endDate}`);
+                const data = await response.json();
+
+                if (data.success) {
+                    console.log(data)
+                    if (data.users.length > 0) {
+                        data.users.forEach(user => {
+                            let dateJoined = formatLastLogin(user.date_joined)
+                            const userCard = document.createElement('div');
+                            userCard.className = 'user-card';
+                            userCard.innerHTML = `
+                                <p><strong>Username:</strong> ${user.username}</p>
+                                <p><strong>Email:</strong> ${user.email}</p>
+                                <p><strong>Joined Date:</strong> ${dateJoined}</p>
+                            `;
+                            resultsDiv.appendChild(userCard);
+                        });
+                    } else {
+                        resultsDiv.innerHTML = '<p>No users found in the given date range.</p>';
+                    }
+                } else {
+                    alert(data.message || 'Something went wrong.');
+                }
+            } catch (error) {
+                console.error('Error fetching users:', error);
+                alert('An error occurred while fetching users. Please try again later.');
+            }
+        }
+    async function searchUser() {
+        const username = document.getElementById('username').value;
+        const resultsDiv = document.getElementById('results');
+        const resultsList = document.getElementById('results-list');
+
+        if (!username.trim()) {
+            alert('Please enter a username');
+            return;
+        }
+
+        // Clear previous results
+        resultsList.innerHTML = '';
+
+        try {
+            const response = await fetch(`/search/?username=${encodeURIComponent(username)}`);
+            const data = await response.json();
+
+            if (data.success && data.users.length > 0) {
+                console.log(data)
+                resultsDiv.style.display = 'block';
+                data.users.forEach((user) => {
+                    let dateTime = formatLastLogin(user.last_login)
+                    let dateJoined = formatLastLogin(user.date_joined)
+                    const li = document.createElement('li');
+                    console.log(user)
+                    li.innerHTML = `<p><strong>${user.username}</strong></p><p>${user.email} | Last logged in: ${dateTime} Date Joined: ${dateJoined}</p>`;
+                    resultsList.appendChild(li);
+                });
+            } else {
+                resultsDiv.style.display = 'block';
+                resultsList.innerHTML = '<li>No users found</li>';
+            }
+        } catch (error) {
+            console.error('Error fetching users:', error);
+            alert('An error occurred while searching for users. Please try again later.');
+        }
+    }
+</script>
+{% endblock body %}

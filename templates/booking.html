@@ -1,0 +1,438 @@
+{% extends "base.html" %}
+
+<!-- change content -->
+{% block title %}booking{% endblock title %}
+{% load static %}
+{% block body %}
+<link rel="stylesheet" href="{% static 'booking.css' %}"> 
+{% include "components/navbar.html" %}
+<section>
+{% comment %} <div class="container">
+    <!-- Image Section -->
+    <div class="image-section">
+        <img src="high-end-pc.jpg" alt="High-End PC">
+    </div>
+
+    <!-- Specifications Section -->
+    <div class="specs-section">
+        <h2>High-End PC Specifications</h2>
+        <ul class="specs-list">
+            <li>Processor: Intel Core i9-13900K</li>
+            <li>GPU: NVIDIA RTX 4090</li>
+            <li>RAM: 64GB DDR5</li>
+            <li>Storage: 2TB NVMe SSD</li>
+            <li>Power Supply: 1000W Gold Certified</li>
+            <li>Cooling: Liquid Cooling System</li>
+            <li>Monitor: 32-inch 4K Ultra HD</li>
+        </ul>
+    </div>
+
+    <!-- Booking Section -->
+    <!-- <div class="booking-section">
+        <h2>Book Your Slut {{ avl_pc }}</h2>
+        <div id="avl-pc"></div>
+        <form onsubmit="generateBill(event)">
+            <label for="duration">Duration (hours):</label>
+            <select id="duration" name="duration" onchange="updateEndTime()">
+                <option value="1">1 hour</option>
+                <option value="2">2 hours</option>
+                <option value="3">3 hours</option>
+                <option value="4">4 hours</option>
+                <option value="5">5 hours</option>
+                <option value="6">6 hours</option>
+                <option value="7">7 hours</option>
+                <option value="8">8 hours</option>
+                <option value="9">9 hours</option>
+                <option value="10">10 hours</option>
+            </select>
+
+            <label for="start-time">Start Time:</label>
+            <input type="time" id="start-time" name="start-time" onchange="updateStartTimeDisplay()">
+            <input type="text" id="start-time-display" placeholder="Start time (AM/PM)" disabled>
+
+            <label for="end-time">End Time:</label>
+            <input type="text" id="end-time" name="end-time" placeholder="End time will be shown here" disabled>
+
+            <button type="submit">Book Slot</button>
+        </form>
+    </div>
+</div> -->
+
+<!-- Bill Section -->
+<div id="bill" class="bill-container">
+    <img src="logo.png" alt="Website Logo">
+    <h3>Booking Receipt</h3>
+    <div class="bill-details">
+        <p><strong>Transaction ID:</strong> <span id="transaction-id"></span></p>
+        <p><strong>User ID:</strong> <span id="user-id"></span></p>
+        <p><strong>Slot Number:</strong> <span id="slot-number"></span></p>
+        <p><strong>Start Time:</strong> <span id="bill-start-time"></span></p>
+        <p><strong>End Time:</strong> <span id="bill-end-time"></span></p>
+        <p><strong>Duration:</strong> <span id="bill-duration"></span> hours</p>
+        <p><strong>Total Amount:</strong> ₹<span id="bill-amount"></span></p>
+        <p><strong>Payment Time & Date:</strong> <span id="payment-time"></span></p>
+    </div>
+</div> {% endcomment %}
+
+<div class="container" >
+    <!-- Image Section -->
+    <div class="image-section" id="image-section-id">
+        <img style="margin-top: 6rem;
+    margin-left: 2rem;" src="{% static 'img/high_end_pc_2.png' %}" alt="High-End PC">
+    </div>
+
+    <script>
+        url = "{% static 'img/mimg.png' %}";
+        document.getElementById('image-section-id').style.backgroundImage = `url('${url}')`;
+    </script>
+
+    <!-- Specifications Section -->
+    <div class="specs-section" id="specs-section-id">
+        <h2>High-End PC Specifications</h2>
+        <ul class="specs-list">
+            <li>Processor: Intel Core i9-13900K</li>
+            <li>GPU: NVIDIA RTX 4090</li>
+            <li>RAM: 64GB DDR5</li>
+            <li>Storage: 2TB NVMe SSD</li>
+            <li>Power Supply: 1000W Gold Certified</li>
+            <li>Cooling: Liquid Cooling System</li>
+            
+        </ul>
+
+        <h2>Accessories With PC</h2>
+        <ul class="specs-list">
+            <li>Monitor: 32-inch 4K Ultra HD</li>
+            <li>Mosue: Logitech G203</li>
+            <li>Keyboard: CosmicByte GK-29</li>
+            <li>Headphone: Razer BlackSharkV2 X</li>
+            <li>Etarnet: High Speed Internet</li>
+            
+        </ul>
+    </div>
+
+    <script>
+        url = "{% static 'img/brand-bg-2.jpg' %}";
+        document.getElementById('specs-section-id').style.backgroundImage = `url('${url}')`;
+    </script>
+
+    <!-- Booking Section -->
+    <div class="booking-section" id="booking-section-id">
+        <!-- the og -->
+        <h2>Book Your Sloot</h2> 
+        <form>
+            <label for="" >Slot Available:</label>
+            <input  class="slot_input" type="text" id="slot-number" name="end-time" placeholder="{{ avl_pc }} Slot" disabled>
+
+            <label for="duration">Duration (hours):</label>
+            <select id="duration" name="duration" onchange="updateEndTime()">
+                <option value="1">1 hour</option>
+                <option value="2">2 hours</option>
+                <option value="3">3 hours</option>
+                <option value="4">4 hours</option>
+                <option value="5">5 hours</option>
+                <option value="6">6 hours</option>
+                <option value="7">7 hours</option>
+                <option value="8">8 hours</option>
+                <option value="9">9 hours</option>
+                <option value="10">10 hours</option>
+            </select>
+
+            <label for="start-time">Start Time:</label>
+            <input type="time" id="start-time" name="start-time" onchange="updateStartTimeDisplay()">
+            <input type="text" id="start-time-display" placeholder="Start time (AM/PM)" disabled>
+
+            <label for="end-time">End Time:</label>
+            <input type="text" id="end-time" name="end-time" placeholder="End time will be shown here" disabled>
+
+            <button type="submit" onclick="{% if user.is_authenticated %} validateBooking(event) {% else %} redirectLogin(event) {% endif %}" id="book-amt">Book Slot</button>
+        </form>
+    </div>
+    
+    <script>
+        function redirectLogin(event){
+            event.preventDefault();
+            window.location.href='/login'
+        }
+        url = "{% static 'img/controler.jpeg' %}";
+        document.getElementById('booking-section-id').style.backgroundImage = `url('${url}')`;
+    </script>
+
+</div>
+<div id="overlay" style="display: none;height: 100vh; width: 100vw; z-index: 5; background-color: rgba(0, 0, 0, 0.541);"></div>
+<div id="bill" class="bill-container modal">
+    <img src="logo.png" alt="Website Logo">
+    <h3>Booking Receipt</h3>
+    <div class="bill-details">
+        <p><strong>Transaction ID:</strong> <span id="transaction-id"></span></p>
+        <p><strong>User ID:</strong> <span id="user-id"></span></p>
+        <p><strong>Slot Number:</strong> <span id="slot-number"></span></p>
+        <p><strong>Start Time:</strong> <span id="bill-start-time"></span></p>
+        <p><strong>End Time:</strong> <span id="bill-end-time"></span></p>
+        <p><strong>Duration:</strong> <span id="bill-duration"></span> hours</p>
+        <p><strong>Total Amount:</strong> ₹<span id="bill-amount"></span></p>
+        <p><strong>Payment Time & Date:</strong> <span id="payment-time"></span></p>
+    </div>
+</div>
+<script>
+    // function closeModal(){
+    //     document.querySelectorAll(".modal").forEach(e=>{
+    //         if(!e.classList.contains("none")){
+    //             e.classList.add("none")
+    //         }
+    //     })
+    // }
+</script>
+</section>
+{% comment %} <script>
+    function formatAMPM(hours, minutes) {
+        const ampm = hours >= 12 ? 'PM' : 'AM';
+        hours = hours % 12;
+        hours = hours ? hours : 12; // the hour '0' should be '12'
+        minutes = minutes.toString().padStart(2, '0');
+        return `${hours}:${minutes} ${ampm}`;
+    }
+
+    function updateStartTimeDisplay() {
+        const timeInput = document.getElementById('start-time').value;
+        if (timeInput) {
+            const [hours, minutes] = timeInput.split(':').map(Number);
+            const formattedTime = formatAMPM(hours, minutes);
+            document.getElementById('start-time-display').value = formattedTime;
+            updateEndTime();
+        }
+    }
+
+    function updateEndTime() {
+        const startTime = document.getElementById('start-time').value;
+        const duration = parseInt(document.getElementById('duration').value);
+        if (startTime && duration) {
+            const [hours, minutes] = startTime.split(':').map(Number);
+            const endTime = new Date();
+            endTime.setHours(hours + duration, minutes);
+
+            const formattedEndTime = formatAMPM(endTime.getHours(), endTime.getMinutes());
+            document.getElementById('end-time').value = formattedEndTime;
+        }
+    }
+
+    function generateBill(event) {
+        event.preventDefault();
+
+        const duration = document.getElementById('duration').value;
+        const startTime = document.getElementById('start-time-display').value;
+        const endTime = document.getElementById('end-time').value;
+
+        if (!startTime || !endTime) {
+            alert("Please provide valid booking details.");
+            return;
+        }
+
+        const now = new Date();
+        const transactionID = `TXN${Math.floor(100000 + Math.random() * 900000)}`;
+        const userID = `USER${Math.floor(1000 + Math.random() * 9000)}`;
+        const slotNumber = Math.floor(1 + Math.random() * 100);
+        const totalAmount = duration * 100;
+        const paymentTime = now.toLocaleString();
+        console.log(setBookingDets(duration, startTime))
+        if(setBookingDets(duration, startTime)){
+            console.log('if')
+            // Populate bill
+            document.getElementById('transaction-id').textContent = transactionID;
+            document.getElementById('user-id').textContent = userID;
+            document.getElementById('slot-number').textContent = slotNumber;
+            document.getElementById('bill-start-time').textContent = startTime;
+            document.getElementById('bill-end-time').textContent = endTime;
+            document.getElementById('bill-duration').textContent = duration;
+            document.getElementById('bill-amount').textContent = totalAmount;
+            document.getElementById('payment-time').textContent = paymentTime;
+    
+            // Show bill
+            document.getElementById('bill').style.display = 'flex';
+        }else{
+            console.log('else')
+            alert("its full")
+        }
+
+    }
+
+    function setBookingDets(duration, startTime){
+        let result;
+        fetch('/book-pc/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: new URLSearchParams({
+                'duration': duration,
+                'start_time': startTime,
+            }),
+        })
+        .then(res=>{
+            console.log(res)
+            console.log(res.json())
+            return res.json()
+        })
+        .then(data => {
+            console.log(data); // Handle the parsed JSON data
+        })
+        .catch(error => {
+            console.error('Error:', error); // Handle any errors
+        });
+    }
+</script> {% endcomment %}
+
+<script>
+    let id = "{{avl_pc}}"
+    document.querySelector("#avl-pc").innerHTML=id
+    function formatAMPM(hours, minutes) {
+        const ampm = hours >= 12 ? 'PM' : 'AM';
+        hours = hours % 12;
+        hours = hours ? hours : 12; // the hour '0' should be '12'
+        minutes = minutes.toString().padStart(2, '0');
+        return `${hours}:${minutes} ${ampm}`;
+    }
+
+    function updateStartTimeDisplay() {
+        const timeInput = document.getElementById('start-time').value;
+        if (timeInput) {
+            const [hours, minutes] = timeInput.split(':').map(Number);
+            const formattedTime = formatAMPM(hours, minutes);
+            document.getElementById('start-time-display').value = formattedTime;
+            updateEndTime();
+        }
+    }
+
+    function updateEndTime() {
+        const startTime = document.getElementById('start-time').value;
+        const duration = parseInt(document.getElementById('duration').value);
+        document.getElementById('book-amt').innerHTML = `₹ ${duration * 100}`
+        console.log(duration * 100)
+        if (startTime && duration) {
+            const [hours, minutes] = startTime.split(':').map(Number);
+            const endTime = new Date();
+            endTime.setHours(hours + duration, minutes);
+
+            const formattedEndTime = formatAMPM(endTime.getHours(), endTime.getMinutes());
+            document.getElementById('end-time').value = formattedEndTime;
+        }
+    }
+
+    function setBookingDets(duration, startTime, event){
+        let result;
+        fetch('/book-pc/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: new URLSearchParams({
+                'duration': duration,
+                'start_time': startTime,
+            }),
+        })
+        .then(res=>{
+            return res.json()
+        })
+        .then(data => {
+            console.log(data); // Handle the parsed JSON data
+            if(data.success){
+                alert(data.message)
+                generateBill(event)
+            }else{
+                alert(data.message)
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error); // Handle any errors
+        });
+    }
+
+
+    function validateBooking(event) {
+        event.preventDefault();
+        const startTime = document.getElementById('start-time').value;
+        const duration = parseInt(document.getElementById('duration').value, 10);
+
+        if (!startTime || isNaN(duration) || duration <= 0) {
+            alert("Please provide a valid start time and positive duration.");
+            return;
+        }
+
+        // Parse the selected start time
+        const [startHours, startMinutes] = startTime.split(':').map(Number);
+        const startTotalMinutes = startHours * 60 + startMinutes;
+
+        // Get the current time in total minutes
+        const now = new Date();
+        const currentTotalMinutes = now.getHours() * 60 + now.getMinutes();
+
+        // Check if the selected start time is earlier than the current time
+        if (startTotalMinutes < currentTotalMinutes) {
+            alert("Invalid booking: Start time cannot be earlier than the current time.");
+            return;
+        }
+
+        // Calculate the end time in total minutes
+        const endTotalMinutes = startTotalMinutes + duration * 60;
+        console.log("startTotalMinutes: " + startTotalMinutes)
+        console.log("duration: " + duration)
+
+        // Define valid booking hours
+        const noonMinutes = 12 * 60; // 12:00 PM
+        const tenPMMinutes = 22 * 60; // 10:00 PM
+
+        // Check if the start time is before 12 PM or the end time is after 10 PM
+        if (startTotalMinutes < noonMinutes) {
+            alert("Invalid booking: Start time must be at or after 12 PM.");
+            return;
+        }
+
+        console.log("endTotalMinutes: " + endTotalMinutes)
+        console.log("tenpmminutes: " + tenPMMinutes)
+        if (endTotalMinutes > tenPMMinutes) {
+            const endHours = Math.floor(endTotalMinutes / 60);
+            const endMinutes = endTotalMinutes % 60;
+            const formattedEndTime = `${String(endHours).padStart(2, '0')}:${String(endMinutes).padStart(2, '0')}`;
+            console.log("endHours: " + endHours)
+            console.log("endMinutes: " + endMinutes)
+            console.log("formattedEndTime: " + formattedEndTime)
+            alert(
+                `Invalid booking: End time (${formattedEndTime}) exceeds the allowed limit of 10:00 PM.`
+            );
+            return;
+        }
+        setBookingDets(duration, startTime, event)
+    }
+
+    function generateBill(event) {
+        event.preventDefault();
+
+        const duration = document.getElementById('duration').value;
+        const startTime = document.getElementById('start-time-display').value;
+        const endTime = document.getElementById('end-time').value;
+
+        if (!startTime || !endTime) {
+            alert("Please provide valid booking details.");
+            return;
+        }
+
+        const now = new Date();
+        const transactionID = `TXN${Math.floor(100000 + Math.random() * 900000)}`;
+        const userID = `USER${Math.floor(1000 + Math.random() * 9000)}`;
+        const slotNumber = Math.floor(1 + Math.random() * 100);
+        const totalAmount = duration * 100;
+        const paymentTime = now.toLocaleString();
+
+        // Populate bill
+        document.getElementById('transaction-id').textContent = transactionID;
+        document.getElementById('user-id').textContent = userID;
+        document.getElementById('slot-number').textContent = slotNumber;
+        document.getElementById('bill-start-time').textContent = startTime;
+        document.getElementById('bill-end-time').textContent = endTime;
+        document.getElementById('bill-duration').textContent = duration;
+        document.getElementById('bill-amount').textContent = totalAmount;
+        document.getElementById('payment-time').textContent = paymentTime;
+        document.getElementById('bill').style.display = 'flex';
+        document.getElementById('overlay').style.display = 'block';
+    }
+</script>
+{% endblock body %}

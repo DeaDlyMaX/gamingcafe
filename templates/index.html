@@ -1,56 +1,43 @@
-    ``{% extends "base.html" %}
+{% extends "base.html" %}
    {% block title %}hathi{% endblock title%}
    {% block body %}
 {% load static %} 
-<link rel="stylesheet" href="{% static 'style.css' %}">   
+{% comment %} {% if user.is_authenticated %}
+{{user.username}}
+{% else %}
+guest
+{% endif %} {% endcomment %}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-    <h1 class="header-txt">
-        "Bada screen m dekh gandu"
-    </h1>
-    <header>
-        <nav>
-            <div class="logo" id="himg">
-
-                <img src="{% static 'img/footer-logo.png' %}" alt="logo" width="112" height="28">
-
-            </div>
-            <div class="center" id="center">
-
-                <a class="nav-mid" href="#">HOME<span></span></a>
-                <a class="nav-mid" href="#">CAFE<span></span></a>
-                <a class="nav-mid" href="#">ABOUT <span></span></a>
-                <a class="nav-mid" href="#">SERVICES<span></span></a>
-                <a class="nav-mid" href="#" >CONTACT<span></span></a> 
-                <a href=""><i  class="fa-regular fa-envelope"></i> </a>
-
-            </div>
-            <div class="right">
-                <button class="nav-btn">Rental</button>
-                <button class="nav-btn"><a href="/login">Login</a></button>
-            </div>
-        </nav>
-    </header>
+<link rel="stylesheet" href="{% static 'style.css' %}">     
+    {% include "components/navbar.html" %}
     <main>
         <section class="bg-img-wrapper" style="padding: 0;">
             <div class="mimg" , class="main1">
                 <img src="{% static 'img/slide-1.jpg' %}" class="bg-img" alt="">
             </div>
-            <div class="c-img-designs">
-                <img src="{% static 'img/red-mark.png' %}" alt="error" id="red-mark" />
-                <div id="apex-game-img">
+            <div class="c-img-designs ">
+                <img src="{% static 'img/red-mark.png' %}" alt="error" id="red-mark" >
+                <div id="apex-game-img" class="animate__animated animate__zoomIn" style="animation-delay: 0.2s;">
                     <img src="{% static 'img/apex.jpg' %}" class="game-img" alt="">
                 </div>
-                <div id="war-game-img">
+                <div id="war-game-img" class="animate__animated animate__zoomIn" style="animation-delay: 0.4s;">
                     <img src="{% static 'img/warzone.jpg' %}" class="game-img" alt="">
                 </div>
-                <div id="dota-game-img">
+                <div id="dota-game-img" class="animate__animated animate__zoomIn" style="animation-delay: 0.6s;">
                     <img src="{% static 'img/dota.jpg' %}" class="game-img" alt="">
                 </div>
-                <div id="counter-game-img">
+                <div id="counter-game-img" class="animate__animated animate__zoomIn" style="animation-delay: 0.8s;">
                     <img src="{% static 'img/csgo.jpg' %}" class="game-img" alt="">
                 </div>
-                <div id="val-game-img">
+                <div id="val-game-img" class="animate__animated animate__zoomIn" style="animation-delay: 0.9s;">
                     <img src="{% static 'img/valorant2.jpg' %}" class="game-img" alt="">
+                </div>
+                <div class="text">
+                    <h1 class="gaming animate__animated animate__backInDown" style="animation-delay: 0.6s">Ga<span style="color: #ee1c23;">ming </span></h1>
+                    <h1 class="cafe animate__animated animate__backInUp" style="animation-delay: 0.7s">Ca<span style="color: #ee1c23;">fe</span></h1>
+                </div>
+                <div class="book-btn "">
+                    <a href="booking"  ><button class="animate__animated animate__bounceIn" style="animation-delay: 1.7s;">Book Slot</button></a>
                 </div>
             </div>
         </section>
@@ -121,8 +108,7 @@
                     <img src="{% static 'img/os1.png' %}" alt="">
                     <p class="title">Gaming Cafe</p>
                     <p class="desc">Experience the thrill of high-speed racing at our gaming cafe, where you can take
-                        control of authentic racing wheel simulators for an immersive and adrenaline-pumping gaming
-                        experience like no other.</p>
+                        control of authentic racing wheel simulators.</p>
                 </div>
                 <div class="services">
                     <img src="{% static 'img/os1.png' %}" alt="">
@@ -136,8 +122,7 @@
                     <img src="{% static 'img/os1.png' %}" alt="">
                     <p class="title">Gaming Cafe</p>
                     <p class="desc">Our gaming cafes boast cutting-edge streaming rooms equipped with the latest
-                        technology, providing gamers with the perfect environment to stream and go live, taking their
-                        gaming experience to the next level.</p>
+                        technology, providing gamers with the perfect environment to stream and go live.</p>
                 </div>
                 <div class="services">
                     <img src="{% static 'img/os1.png' %}" alt="">
@@ -190,7 +175,7 @@
 
         <section id="footer-end">
             <div class="footer-info">
-                <div class="outrow-1"><img src="{% static 'img/footer-logo.png' %}" alt="logo" width="112" height="28">
+                <div ><img src="{% static 'img/footer-logo.png' %}" alt="logo" >
                 </div>
                 <div>
                     <p>Creating an affordable and accessible gaming ecosystem</p>
