@@ -4,28 +4,32 @@
 {% block title %}booking{% endblock title %}
 {% load static %}
 {% block body %}
-<link rel="stylesheet" href="{% static 'booking.css' %}"> 
+<link rel="stylesheet" href="{% static 'booking.css' %}">
 {% include "components/navbar.html" %}
-<section>
-{% comment %} <div class="container">
-    <!-- Image Section -->
-    <div class="image-section">
-        <img src="high-end-pc.jpg" alt="High-End PC">
+<div class="btn_cng" style="display: flex; position: absolute;
+    top: 110PX; gap: 40px; left:34% ;">
+<button id="monthly" onclick="switchSection(1)" class="active button type1">Bill Monthly</button>
+<button id="yearly" onclick="switchSection(2)" class="button type1">Bill Yearly </button></div>
+<section id="book-slot" class="booking-sec" hidden>
+
+
+
+    <!-- Bill Section -->
+    <div id="bill" class="bill-container">
+        <img src="logo.png" alt="Website Logo">
+        <h3>Booking Receipt</h3>
+        <div class="bill-details">
+            <p><strong>Transaction ID:</strong> <span id="transaction-id"></span></p>
+            <p><strong>User ID:</strong> <span id="user-id"></span></p>
+            <p><strong>Slot Number:</strong> <span id="slot-number"></span></p>
+            <p><strong>Start Time:</strong> <span id="bill-start-time"></span></p>
+            <p><strong>End Time:</strong> <span id="bill-end-time"></span></p>
+            <p><strong>Duration:</strong> <span id="bill-duration"></span> hours</p>
+            <p><strong>Total Amount:</strong> ₹<span id="bill-amount"></span></p>
+            <p><strong>Payment Time & Date:</strong> <span id="payment-time"></span></p>
+        </div>
     </div>
 
-    <!-- Specifications Section -->
-    <div class="specs-section">
-        <h2>High-End PC Specifications</h2>
-        <ul class="specs-list">
-            <li>Processor: Intel Core i9-13900K</li>
-            <li>GPU: NVIDIA RTX 4090</li>
-            <li>RAM: 64GB DDR5</li>
-            <li>Storage: 2TB NVMe SSD</li>
-            <li>Power Supply: 1000W Gold Certified</li>
-            <li>Cooling: Liquid Cooling System</li>
-            <li>Monitor: 32-inch 4K Ultra HD</li>
-        </ul>
-    </div>
 
     <!-- Booking Section -->
     <!-- <div class="booking-section">
@@ -79,80 +83,188 @@
     <div class="image-section" id="image-section-id">
         <img style="margin-top: 6rem;
     margin-left: 2rem;" src="{% static 'img/high_end_pc_2.png' %}" alt="High-End PC">
-    </div>
+        </div>
 
+        <script>
+            url = "{% static 'img/mimg.png' %}";
+            document.getElementById('image-section-id').style.backgroundImage = `url('${url}')`;
+        </script>
+
+        <!-- Specifications Section -->
+        <div class="specs-section" id="specs-section-id">
+            <h2>High-End PC Specifications</h2>
+            <ul class="specs-list">
+                <li>Processor: Intel Core i9-13900K</li>
+                <li>GPU: NVIDIA RTX 4090</li>
+                <li>RAM: 64GB DDR5</li>
+                <li>Storage: 2TB NVMe SSD</li>
+                <li>Power Supply: 1000W Gold Certified</li>
+                <li>Cooling: Liquid Cooling System</li>
+
+            </ul>
+
+            <h2>Accessories With PC</h2>
+            <ul class="specs-list">
+                <li>Monitor: 32-inch 4K Ultra HD</li>
+                <li>Mosue: Logitech G203</li>
+                <li>Keyboard: CosmicByte GK-29</li>
+                <li>Headphone: Razer BlackSharkV2 X</li>
+                <li>Etarnet: High Speed Internet</li>
+
+            </ul>
+        </div>
+
+        <script>
+            url = "{% static 'img/brand-bg-2.jpg' %}";
+            document.getElementById('specs-section-id').style.backgroundImage = `url('${url}')`;
+        </script>
+
+        <!-- Booking Section -->
+        <div class="booking-section" id="booking-section-id">
+            <!-- the og -->
+            <h2>Book Your Sloot</h2>
+            <form>
+                <label for="">Slot Available:</label>
+                <input class="slot_input" type="text" id="slot-number" name="end-time" placeholder="{{ avl_pc }} Slot"
+                    disabled>
+
+                <label for="duration">Duration (hours):</label>
+                <select id="duration" name="duration" onchange="updateEndTime()">
+                    <option value="1">1 hour</option>
+                    <option value="2">2 hours</option>
+                    <option value="3">3 hours</option>
+                    <option value="4">4 hours</option>
+                    <option value="5">5 hours</option>
+                    <option value="6">6 hours</option>
+                    <option value="7">7 hours</option>
+                    <option value="8">8 hours</option>
+                    <option value="9">9 hours</option>
+                    <option value="10">10 hours</option>
+                </select>
+
+                <label for="start-time">Start Time:</label>
+                <input type="time" id="start-time" name="start-time" onchange="updateStartTimeDisplay()">
+                <input type="text" id="start-time-display" placeholder="Start time (AM/PM)" disabled>
+
+                <label for="end-time">End Time:</label>
+                <input type="text" id="end-time" name="end-time" placeholder="End time will be shown here" disabled>
+
+                <button type="submit"
+                    onclick="{% if user.is_authenticated %} validateBooking(event) {% else %} redirectLogin(event) {% endif %}"
+                    id="book-amt">Book Slot</button>
+            </form>
+        </div>
+
+        <script>
+            function redirectLogin(event) {
+                event.preventDefault();
+                window.location.href = '/login'
+            }
+            url = "{% static 'img/controler.jpeg' %}";
+            document.getElementById('booking-section-id').style.backgroundImage = `url('${url}')`;
+        </script>
+
+    </div>
+    <div id="overlay"
+        style="display: none;height: 100vh; width: 100vw; z-index: 5; background-color: rgba(0, 0, 0, 0.541);"></div>
+    <div id="bill" class="bill-container modal">
+        <img src="logo.png" alt="Website Logo">
+        <h3>Booking Receipt</h3>
+        <div class="bill-details">
+            <p><strong>Transaction ID:</strong> <span id="transaction-id"></span></p>
+            <p><strong>User ID:</strong> <span id="user-id"></span></p>
+            <p><strong>Slot Number:</strong> <span id="slot-number"></span></p>
+            <p><strong>Start Time:</strong> <span id="bill-start-time"></span></p>
+            <p><strong>End Time:</strong> <span id="bill-end-time"></span></p>
+            <p><strong>Duration:</strong> <span id="bill-duration"></span> hours</p>
+            <p><strong>Total Amount:</strong> ₹<span id="bill-amount"></span></p>
+            <p><strong>Payment Time & Date:</strong> <span id="payment-time"></span></p>
+        </div>
+    </div>
     <script>
-        url = "{% static 'img/mimg.png' %}";
-        document.getElementById('image-section-id').style.backgroundImage = `url('${url}')`;
+        // function closeModal(){
+        //     document.querySelectorAll(".modal").forEach(e=>{
+        //         if(!e.classList.contains("none")){
+        //             e.classList.add("none")
+        //         }
+        //     })
+        // }
     </script>
+</section>
 
-    <!-- Specifications Section -->
-    <div class="specs-section" id="specs-section-id">
-        <h2>High-End PC Specifications</h2>
-        <ul class="specs-list">
-            <li>Processor: Intel Core i9-13900K</li>
-            <li>GPU: NVIDIA RTX 4090</li>
-            <li>RAM: 64GB DDR5</li>
-            <li>Storage: 2TB NVMe SSD</li>
-            <li>Power Supply: 1000W Gold Certified</li>
-            <li>Cooling: Liquid Cooling System</li>
+<section id="pass-billing" class="booking-sec">
+    <div class="container-1">
+        <div class="header">
+            <!-- <div class="billing-toggle">
             
-        </ul>
+          </div> -->
+            <h1>Plans & Pricing</h1>
+        </div>
+        <div class="pricing-cards">
+            <div class="card">
+                <div class="card-header">
+                    <h2>Cafe Pass</h2>
+                    <p class="price"><span id="free-price"></span>Silver</p>
+                    <a href="#" class="button">₹3000</a>
+                </div>
+                <ul class="features">
+                    <li>Email APIs, SMTP Relay, and Webhooks</li>
+                    <li>Suppression Management</li>
+                    <li>Email Tracking and Analytics</li>
+                    <li>99.99% Guaranteed Uptime SLA</li>
+                </ul>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h2>Cafe Pass</h2>
+                    <p class="price"><span id="team-price"></span>Gold</p>
+                    <a href="#" class="button">₹5000</a>
+                </div>
+                <ul class="features">
+                    <li>Email APIs, SMTP Relay, and Webhooks</li>
+                    <li>Suppression Management</li>
+                    <li>Email Tracking and Analytics</li>
+                    <li>99.99% Guaranteed Uptime SLA</li>
 
-        <h2>Accessories With PC</h2>
-        <ul class="specs-list">
-            <li>Monitor: 32-inch 4K Ultra HD</li>
-            <li>Mosue: Logitech G203</li>
-            <li>Keyboard: CosmicByte GK-29</li>
-            <li>Headphone: Razer BlackSharkV2 X</li>
-            <li>Etarnet: High Speed Internet</li>
-            
-        </ul>
+                </ul>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h2>Cafe Pass</h2>
+                    <p class="price"><span id="company-price"></span>Daimond</p>
+                    <a href="#" class="button">₹20000</a>
+                </div>
+                <ul class="features">
+                    <li>Email APIs, SMTP Relay, and Webhooks</li>
+                    <li>Suppression Management</li>
+                    <li>Email Tracking and Analytics</li>
+                    <li>99.99% Guaranteed Uptime SLA</li>
+
+                </ul>
+            </div>
+        </div>
     </div>
+</section>
 
-    <script>
-        url = "{% static 'img/brand-bg-2.jpg' %}";
-        document.getElementById('specs-section-id').style.backgroundImage = `url('${url}')`;
-    </script>
+<script>
+    let bookSlot = document.querySelector("#book-slot");
+    let passBilling = document.querySelector("#pass-billing");
+    function switchSection(elem) {
 
-    <!-- Booking Section -->
-    <div class="booking-section" id="booking-section-id">
-        <!-- the og -->
-        <h2>Book Your Sloot</h2> 
-        <form>
-            <label for="" >Slot Available:</label>
-            <input  class="slot_input" type="text" id="slot-number" name="end-time" placeholder="{{ avl_pc }} Slot" disabled>
+        document.querySelectorAll(".booking-sec").forEach(e => {
+            e.setAttribute("hidden", 'true');
+        })
+        switch (elem) {
+            case 1:
+                passBilling.removeAttribute("hidden")
+                break;
 
-            <label for="duration">Duration (hours):</label>
-            <select id="duration" name="duration" onchange="updateEndTime()">
-                <option value="1">1 hour</option>
-                <option value="2">2 hours</option>
-                <option value="3">3 hours</option>
-                <option value="4">4 hours</option>
-                <option value="5">5 hours</option>
-                <option value="6">6 hours</option>
-                <option value="7">7 hours</option>
-                <option value="8">8 hours</option>
-                <option value="9">9 hours</option>
-                <option value="10">10 hours</option>
-            </select>
-
-            <label for="start-time">Start Time:</label>
-            <input type="time" id="start-time" name="start-time" onchange="updateStartTimeDisplay()">
-            <input type="text" id="start-time-display" placeholder="Start time (AM/PM)" disabled>
-
-            <label for="end-time">End Time:</label>
-            <input type="text" id="end-time" name="end-time" placeholder="End time will be shown here" disabled>
-
-            <button type="submit" onclick="{% if user.is_authenticated %} validateBooking(event) {% else %} redirectLogin(event) {% endif %}" id="book-amt">Book Slot</button>
-        </form>
-    </div>
-    
-    <script>
-        function redirectLogin(event){
-            event.preventDefault();
-            window.location.href='/login'
+            case 2:
+                bookSlot.removeAttribute("hidden")
+            default:
+                break;
         }
+
         url = "{% static 'img/controler.jpeg' %}";
         document.getElementById('booking-section-id').style.backgroundImage = `url('${url}')`;
     </script>
@@ -182,8 +294,7 @@
     //     })
     // }
 </script>
-</section>
-{% comment %} <script>
+<!-- {% comment %} <script>
     function formatAMPM(hours, minutes) {
         const ampm = hours >= 12 ? 'PM' : 'AM';
         hours = hours % 12;
@@ -279,11 +390,11 @@
             console.error('Error:', error); // Handle any errors
         });
     }
-</script> {% endcomment %}
+</script> {% endcomment %} -->
 
 <script>
     let id = "{{avl_pc}}"
-    document.querySelector("#avl-pc").innerHTML=id
+    // document.querySelector("#avl-pc").innerHTML = id
     function formatAMPM(hours, minutes) {
         const ampm = hours >= 12 ? 'PM' : 'AM';
         hours = hours % 12;
@@ -317,7 +428,7 @@
         }
     }
 
-    function setBookingDets(duration, startTime, event){
+    function setBookingDets(duration, startTime, event) {
         let result;
         fetch('/book-pc/', {
             method: 'POST',
@@ -329,21 +440,21 @@
                 'start_time': startTime,
             }),
         })
-        .then(res=>{
-            return res.json()
-        })
-        .then(data => {
-            console.log(data); // Handle the parsed JSON data
-            if(data.success){
-                alert(data.message)
-                generateBill(event)
-            }else{
-                alert(data.message)
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error); // Handle any errors
-        });
+            .then(res => {
+                return res.json()
+            })
+            .then(data => {
+                console.log(data); // Handle the parsed JSON data
+                if (data.success) {
+                    alert(data.message)
+                    generateBill(event)
+                } else {
+                    alert(data.message)
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error); // Handle any errors
+            });
     }
 
 
