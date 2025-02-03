@@ -1,0 +1,219 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: rgb(255, 0, 0);
+    background-image: url('/static/img/hero-image.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+section {
+    background: rgba(0, 0, 0, 0.09);
+    backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    border-radius: 10px;
+    box-shadow: 5px 20px 50px #000;
+    height: 80vh;
+    width: 88vw;
+    margin-top: 8%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+.his {
+    position: absolute;
+    top: 10%; /* Adjust this value to control the distance from the top */
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    width: 100%;
+}
+
+
+.his span {
+    font-size: 2.5rem;
+    font-weight: bold;
+    font-family: 'Orbitron', sans-serif;
+    color: #ffffff;
+    text-transform: uppercase;
+    padding: 10px 20px;
+    
+    border-radius: 15px;
+    background-color: rgba(0, 0, 0, 0.5);
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.8), -4px -4px 10px rgb(118 116 116 / 77%);
+}
+
+nav {
+    display: flex;
+    height: 4em;
+    justify-content: space-evenly;
+    align-items: center;
+    font-size: 1.4em;
+    background-color: rgb(0, 0, 0);
+    padding: 0%;
+    margin: 0%;
+    width: 100vw;
+    position: fixed;
+    z-index: 2;
+}
+
+nav .center {
+    display: flex;
+
+    align-items: top;
+}
+
+.logo {
+    width: 112;
+    height: 28;
+    max-height: 1.75rem;
+    cursor: pointer;
+
+
+}
+
+
+
+nav .logo img {
+    transition: cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.5s;
+}
+
+#himg:hover img {
+    scale: 1.1;
+}
+
+#center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: brown;
+    gap: 4px;
+    cursor: pointer;
+}
+
+nav .center a {
+    position: relative;
+    font-size: 16PX;
+    font-weight: 110;
+    color: white;
+    text-decoration: none;
+    padding: 6px 20px;
+    transition: .5s;
+}
+
+nav #center .nav-mid:hover {
+    color: red;
+}
+
+nav a span {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    border-bottom: 2px solid red;
+    border-radius: 15px;
+    transform: scale(0) translateY(50px);
+    opacity: 0;
+    transition: .5s;
+}
+
+nav a:hover span {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+}
+
+
+nav button.nav-btn {
+    border-radius: 99px;
+    font-size: 17px;
+    height: 3em;
+    width: 160px;
+    padding: 2px 8px;
+    outline: none;
+    border: none;
+    margin-top: 7px;
+    
+}
+
+button:hover{
+    background-color: red;
+}
+
+.right {
+    display: flex;
+    width: 17%;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px
+}
+
+.btn-user{
+    
+    height: 2.2em;
+    width: fit-content;
+    padding: 10px;
+    border: none;
+}
+
+.right a {
+    width: 22%;
+}
+
+
+
+.right img {
+    padding: 0%;
+    margin: 0%;
+    margin-left: 40px;
+    height: 45px;
+    margin-top: 5px;
+}
+
+
+/* hi?\ */
+
+@keyframes neon-border {
+    0% {
+        box-shadow: 0 0 5px white, 0 0 10px white, 0 0 15px white, 0 0 20px white;
+    }
+    /* 25% {
+        box-shadow: 0 0 10px white, 0 0 15px white, 0 0 20px white, 0 0 25px white;
+    }
+    50% {
+        box-shadow: 0 0 10px white, 0 0 20px white, 0 0 30px white, 0 0 40px white;
+    }
+    75% {
+        box-shadow: 0 0 10px white, 0 0 20px white, 0 0 30px white, 0 0 40px white;
+    }
+    100% {
+        box-shadow: 0 0 5px white, 0 0 10px white, 0 0 15px white, 0 0 20px white; */
+    }
+}
+
+.Order_his {
+    background: rgba(0, 0, 0, 0.09);
+    backdrop-filter: blur(14px);
+    border: 4px solid transparent;
+    border-radius: 10px;
+    height: 80vh;
+    width: 88vw;
+    margin-top: 8%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: neon-border 4s infinite alternate ease-in-out;
+}
+

@@ -59,10 +59,10 @@
 </div> -->
 
 <!-- Bill Section -->
-<div id="bill" class="bill-container">
+<div id="bill" class="bill-container" style="position: absolute; top: 21%; left: 36%;">
     <img src="logo.png" alt="Website Logo">
     <h3>Booking Receipt</h3>
-    <div class="bill-details">
+    <div class="bill-details" id="bill-details">
         <p><strong>Transaction ID:</strong> <span id="transaction-id"></span></p>
         <p><strong>User ID:</strong> <span id="user-id"></span></p>
         <p><strong>Slot Number:</strong> <span id="slot-number"></span></p>
@@ -158,8 +158,8 @@
     </script>
 
 </div>
-<div id="overlay" style="display: none;height: 100vh; width: 100vw; z-index: 5; background-color: rgba(0, 0, 0, 0.541);"></div>
-<div id="bill" class="bill-container modal">
+<div id="overlay" style="display: none;height: 100vh; width: 100vw; z-index: 5; background-color: rgba(0, 0, 0, 0.541); "></div>
+<div id="bill" class="bill-container modal " style="position: absolute; top: 21%; left: 36%;">
     <img src="logo.png" alt="Website Logo">
     <h3>Booking Receipt</h3>
     <div class="bill-details">
@@ -431,8 +431,8 @@
         document.getElementById('bill-duration').textContent = duration;
         document.getElementById('bill-amount').textContent = totalAmount;
         document.getElementById('payment-time').textContent = paymentTime;
-        document.getElementById('bill').style.display = 'flex';
-        document.getElementById('overlay').style.display = 'block';
+        document.getElementById('bill-details').style.display = 'flex';
+        // document.getElementById('overlay').style.display = 'block';
     }
 </script>
 {% endblock body %}

@@ -17,4 +17,5 @@ urlpatterns = [
     
     path('search/', views.search_user, name='search_user'),
     path('users-by-date/', views.get_users_by_date, name='get_users_by_date'),
+    path('History', views.HistoryPage),
 ]

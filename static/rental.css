@@ -166,7 +166,7 @@ nav button.nav-btn {
     width: fit-content;
     padding: 10px;
     border: none;
-    background-color: white;
+    /* background-color: white; */
     z-index: 2;
 }
 
@@ -184,12 +184,16 @@ nav button.nav-btn {
 
 .right img {
     height: 20px;
-    width: 20px;
+    /* width: 20px; */
 }
 
 .right img {
-    padding: 4px;
+    padding: 0%;
     margin: 0%;
+    margin-left: 40px;
+    height: 45px;
+    /* margin-top: 5px; */
+    max-width: none;
 } 
 
 /* alag*/
@@ -652,4 +656,19 @@ li {
     color: white;
     background-color: red;
     border-radius: 5px;
+}
+
+.bill-details{
+    flex-direction: column;
+    align-items: center;
+    background: #222;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+    position: fixed;
+    height: 60vh;
+    width: 30vw;
+    display: none;
+    z-index: 6;
 }
