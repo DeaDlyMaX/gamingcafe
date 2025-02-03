@@ -8,7 +8,7 @@
 <div id="bill" class="bill-container">
     <img src="logo.png" alt="Website Logo">
     <h3>Booking Receipt</h3>
-    <div class="bill-details">
+    <div class="bill-details" id="bill-details">
         <p><strong>Transaction ID:</strong> <span id="transaction-id"></span></p>
         <p><strong>User ID:</strong> <span id="user-id"></span></p>
         <p><strong>Slot Number:</strong> <span id="slot-number"></span></p>
@@ -270,6 +270,16 @@
                 if (data.success) {
                     alert("Booking saved successfully!");
                     console.log(data)
+                    // document.getElementById('booking-id').textContent = data.booking_id;
+                    document.getElementById('user-id').textContent = "{{user.id}}";
+                    document.getElementById('slot-number').textContent = "";
+                    document.getElementById('bill-start-time').textContent = data.pickup_date;
+                    document.getElementById('bill-end-time').textContent = data.pickup_date;
+                    document.getElementById('bill-duration').textContent = data.days;
+                    document.getElementById('bill-amount').textContent = data.amount;
+                    document.getElementById('payment-time').textContent = data.booking_data;
+                    document.getElementById('bill-details').style.display = 'flex';
+                    // document.getElementById('overlay').style.display = 'block';
                 } else {
                     alert("Error: " + data.error);
                 }

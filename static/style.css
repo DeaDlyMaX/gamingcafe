@@ -159,7 +159,8 @@ button:hover{
     padding: 0%;
     margin: 0%;
     margin-left: 40px;
-    height: 54px;
+    height: 45px;
+    margin-top: 5px;
 }
 
 .main1 {

@@ -16,6 +16,8 @@ from django.views.decorators.csrf import csrf_exempt
 from django.utils.timezone import now  # Import the `now` function
 import json
 
+User = get_user_model()
+
 def home(request):
     return render(request, "index.html")
 
@@ -31,6 +33,9 @@ def rentalPage(request):
 
 def searchUser(request):
     return render(request, 'search-user.html') #chng file name 
+
+def HistoryPage(request):
+    return render(request, 'History.html')
 
 def signup(request):
     # referer_url = request.META.get('HTTP_REFERER', '/')

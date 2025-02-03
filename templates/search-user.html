@@ -1,51 +1,89 @@
 {% extends "base.html" %}
 
 {% block title %}
-  Search User
+Search User
 {% endblock title %}
 
 {% block body %}
+
 <style>
     body {
+        background-image: url('/static/img/about-bg.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
         background-color: #f3f4f6;
         font-family: Arial, sans-serif;
-        display: flex;
+        /* display: flex;
         justify-content: center;
-        align-items: center;
+        align-items: center; */
         min-height: 100vh;
         margin: 0;
     }
+
     .container {
+        height: 75vh;
+        height: 75%;
         width: 100%;
-        max-width: 400px;
+        max-width: 90%;
         background: #ffffff;
         border-radius: 8px;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         padding: 20px;
+        position: relative;
+        top: 155px;
+        display: flex;
+        justify-content: center;
+        background: rgba(0, 0, 0, 0.09);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.03);
+        box-shadow: 5px 20px 50px #000;
     }
+
+    .container-1 {
+        height: 75vh;
+        width: 100%;
+        max-width: 90%;
+        background: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        position: relative;
+        top: 155px;
+        display: flex;
+        justify-content: center;
+        background: rgba(0, 0, 0, 0.09);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.03);
+        box-shadow: 5px 20px 50px #000;
+    }
+
     h1 {
-        font-size: 24px;
+        font-size: 30px;
         font-weight: bold;
-        color: #333333;
+        color: #d7d2d2fa;
         text-align: center;
         margin-bottom: 20px;
+
     }
+
     label {
-        font-size: 14px;
+        font-size: 20px;
         color: #555555;
         margin-bottom: 8px;
         display: block;
+        margin-left: 16px;
     }
+
     input[type="text"] {
         width: 100%;
-        padding: 10px;
-        border: 1px solid #cccccc;
-        border-radius: 4px;
-        font-size: 14px;
-        margin-bottom: 20px;
+        padding: 1.5%;
+        border-radius: 44px;
+        font-size: 20px;
         box-sizing: border-box;
+        background-color: #212121;
     }
-    button {
+
+    /* button {
         width: 100%;
         padding: 10px;
         background-color: #007BFF;
@@ -55,25 +93,34 @@
         font-size: 16px;
         cursor: pointer;
         transition: background-color 0.3s ease;
+    } */
+
+    .src_name {
+        height: 100vh;
     }
+
     button:hover {
         background-color: #0056b3;
     }
+
     #results {
         margin-top: 20px;
         display: none;
     }
+
     #results h2 {
         font-size: 18px;
         font-weight: bold;
         color: #333333;
         margin-bottom: 10px;
     }
+
     #results ul {
         list-style-type: none;
         padding: 0;
         margin: 0;
     }
+
     #results li {
         padding: 10px;
         background-color: #f9f9f9;
@@ -81,109 +128,474 @@
         border-radius: 4px;
         margin-bottom: 10px;
     }
+
     #results li p {
         margin: 0;
         color: #555555;
     }
+
     #results li p:first-child {
         font-weight: bold;
         color: #333333;
     }
+
+    /* :start */
+
+    nav {
+        display: flex;
+        height: 4em;
+        justify-content: space-evenly;
+        align-items: center;
+        font-size: 1.4em;
+        background-color: rgb(0, 0, 0);
+        padding: 0%;
+        margin: 0%;
+        width: 100vw;
+        position: fixed;
+        z-index: 2;
+    }
+
+    nav .center {
+        display: flex;
+
+        align-items: top;
+    }
+
+    .logo {
+        width: 112;
+        height: 28;
+        max-height: 1.75rem;
+        cursor: pointer;
+
+
+    }
+
+
+
+    nav .logo img {
+        transition: cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.5s;
+    }
+
+    #himg:hover img {
+        scale: 1.1;
+    }
+
+    #center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: brown;
+        gap: 4px;
+        cursor: pointer;
+    }
+
+    nav .center a {
+        position: relative;
+        font-size: 16PX;
+        font-weight: 110;
+        color: white;
+        text-decoration: none;
+        padding: 6px 20px;
+        transition: .5s;
+    }
+
+    nav #center .nav-mid:hover {
+        color: red;
+    }
+
+    nav a span {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        border-bottom: 2px solid red;
+        border-radius: 15px;
+        transform: scale(0) translateY(50px);
+        opacity: 0;
+        transition: .5s;
+    }
+
+    nav a:hover span {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+    }
+
+
+    nav button.nav-btn {
+        border-radius: 99px;
+        font-size: 17px;
+        height: 3em;
+        width: 160px;
+        padding: 2px 8px;
+        outline: none;
+        border: none;
+        margin-top: 7px;
+
+    }
+
+    button:hover {
+        background-color: red;
+    }
+
+    .right {
+        display: flex;
+        width: 17%;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px
+    }
+
+    .btn-user {
+
+        height: 2.2em;
+        width: fit-content;
+        padding: 10px;
+        border: none;
+    }
+
+    .right a {
+        width: 22%;
+    }
+
+
+
+    .right img {
+        padding: 0%;
+        margin: 0%;
+        margin-left: 40px;
+        height: 45px;
+        margin-top: 5px;
+    }
+
+    /* end */
+
+    /* start */
+
+    /* From Uiverse.io by Jaareet */
+    /* .input {
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","Roboto","Oxygen","Ubuntu","Cantarell","Fira Sans","Droid Sans","Helvetica Neue",sans-serif;
+  font-weight: 500;
+  font-size: .8vw;
+  color: #fff;
+  background-color: rgb(28,28,30);
+  box-shadow: 0 0 .4vw rgba(0,0,0,0.5), 0 0 0 .15vw transparent;
+  border-radius: 0.4vw !important;
+  border: none;
+  outline: none;
+  padding: 0.4vw;
+  max-width: 190px;
+  transition: .4s;
+}
+
+.input:hover {
+  box-shadow: 0 0 0 .15vw rgba(224, 5, 5, 0.957) ;
+}
+
+.input:focus {
+  box-shadow: 0 0 0 .15vw skyblue;
+} */
+
+
+    /* end */
+
+    /* From Uiverse.io by OnlyCodeChannel */
+    .searchBox {
+        display: flex;
+
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        background: #2f3640;
+        border-radius: 50px;
+        position: relative;
+        width: 60vw;
+    }
+
+    .searchButton {
+        color: white;
+        position: absolute;
+        right: 8px;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: var(--gradient-2, linear-gradient(90deg, #ff9999 0%, #ff0707 100%));
+        border: 0;
+        display: inline-block;
+        transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+    }
+
+    /*hover effect*/
+    button:hover {
+        color: #fff;
+        background-color: #ff0000;
+        
+    }
+
+    /*button pressing effect*/
+    button:active {
+        box-shadow: none;
+        transform: translateY(0);
+    }
+
+    .searchInput {
+        border: none;
+        background: none;
+        outline: none;
+        color: white;
+        font-size: 15px;
+        padding: 24px 46px 24px 26px;
+    }
+
+
+
+    .cng_btn {
+        display: flex;
+        justify-content: center;
+        position: relative;
+        top: 125px;
+    }
+
+    .lb_date {
+        display: flex;
+    }
+
+    /* start */
+
+    .date-range-picker {
+        margin-top: 5vh;
+    }
+
+    .date-input {
+        background-color: #2a2a2a;
+        padding: 10px 15px;
+        border-radius: 8px;
+        display: inline-block;
+        cursor: pointer;
+        border: none;
+        outline: none;
+        width: 380px;
+    }
+
+    .date-input i {
+        margin-right: 10px;
+    }
+
+    .date-input input {
+        background: transparent;
+        border: none;
+        color: #ccc;
+        font-size: 16px;
+        cursor: pointer;
+        outline: none;
+        width: 115px;
+    }
+
+    input[type="date"]::-webkit-calendar-picker-indicator {
+        filter: invert(1);
+        cursor: pointer;
+    }
+
+    .separator {
+        display: inline-block;
+        margin: 0 10px;
+        font-size: 18px;
+    }
+
+    /* end  */
 </style>
-
-<div class="container">
-    <h1>Search for Users</h1>
-
-    <!-- Input Field and Button -->
-    <label for="username">Username</label>
-    <input 
-        type="text" 
-        id="username" 
-        placeholder="Enter username">
-
-    <button onclick="searchUser()">Search</button>
-
-    <!-- Results Section -->
-    <div id="results">
-        <h2>Search Results</h2>
-        <ul id="results-list"></ul>
+<header>
+    {% include "components/navbar.html" %}
+</header>
+<main>
+    <div class="cng_btn">
+        <button onclick="toggleSearchSection(1)">Search By Name</button>
+        <button onclick="toggleSearchSection(2)">Search By Date</button>
     </div>
-</div>
 
-<div class="container">
-    <h1>Search Users</h1>
-    <label for="start-date">Start Date</label>
-    <input type="date" id="start-date">
+    <section class="src_name" id="src-name" style="display: none;">
+        <div class="container">
+            <div>
+                <h1>Search for Users</h1>
 
-    <label for="end-date">End Date</label>
-    <input type="date" id="end-date">
+                <!-- Input Field and Button -->
+                <label for="username">Username</label>
+                <!-- <input type="text" id="username" placeholder="Enter username"> -->
+                <!-- <input type="text"  id="username" class="input" placeholder="Enter Username"> -->
+                <!-- From Uiverse.io by OnlyCodeChannel -->
+                <div class="searchBox">
 
-    <button onclick="searchUsers()">Search</button>
+                    <input class="searchInput" type="text" id="username" name="" placeholder="Search something">
+                    <button class="searchButton" onclick="searchUser()">
 
-    <div id="res">
-    </div>
-</div>
 
+
+                        <svg xmlns="http://www.w3.org/2000/svg" width="29" height="29" viewBox="0 0 29 29" fill="none">
+                            <g clip-path="url(#clip0_2_17)">
+                                <g filter="url(#filter0_d_2_17)">
+                                    <path
+                                        d="M23.7953 23.9182L19.0585 19.1814M19.0585 19.1814C19.8188 18.4211 20.4219 17.5185 20.8333 16.5251C21.2448 15.5318 21.4566 14.4671 21.4566 13.3919C21.4566 12.3167 21.2448 11.252 20.8333 10.2587C20.4219 9.2653 19.8188 8.36271 19.0585 7.60242C18.2982 6.84214 17.3956 6.23905 16.4022 5.82759C15.4089 5.41612 14.3442 5.20435 13.269 5.20435C12.1938 5.20435 11.1291 5.41612 10.1358 5.82759C9.1424 6.23905 8.23981 6.84214 7.47953 7.60242C5.94407 9.13789 5.08145 11.2204 5.08145 13.3919C5.08145 15.5634 5.94407 17.6459 7.47953 19.1814C9.01499 20.7168 11.0975 21.5794 13.269 21.5794C15.4405 21.5794 17.523 20.7168 19.0585 19.1814Z"
+                                        stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
+                                        shape-rendering="crispEdges"></path>
+                                </g>
+                            </g>
+                            <defs>
+                                <filter id="filter0_d_2_17" x="-0.418549" y="3.70435" width="29.7139" height="29.7139"
+                                    filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                                    <feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>
+                                    <feColorMatrix in="SourceAlpha" type="matrix"
+                                        values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha">
+                                    </feColorMatrix>
+                                    <feOffset dy="4"></feOffset>
+                                    <feGaussianBlur stdDeviation="2"></feGaussianBlur>
+                                    <feComposite in2="hardAlpha" operator="out"></feComposite>
+                                    <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0">
+                                    </feColorMatrix>
+                                    <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_2_17">
+                                    </feBlend>
+                                    <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_2_17"
+                                        result="shape">
+                                    </feBlend>
+                                </filter>
+                                <clipPath id="clip0_2_17">
+                                    <rect width="28.0702" height="28.0702" fill="white"
+                                        transform="translate(0.403503 0.526367)"></rect>
+                                </clipPath>
+                            </defs>
+                        </svg>
+
+
+                    </button>
+                </div>
+                <!-- <div>
+                    <button class="n_btn" onclick="searchUser() ">Search</button>
+                </div> -->
+            </div>
+
+
+
+
+            <!-- Results Section -->
+            <div id="results">
+                <h2>Search Results</h2>
+                <ul id="results-list"></ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="src_name" id="src-date">
+
+        <div class="container">
+            <!-- <div>
+                
+                <div class="lb_date">
+                <label for="start-date">Start Date</label>
+                <input type="date" id="start-date">
+
+                <label for="end-date">End Date</label>
+                <input type="date" id="end-date">
+            </div> -->
+
+            <div>
+                <h1>Search For Users</h1>
+                <div class="date-range-picker">
+                    <label class="date-input">
+                        <i class="fa-solid fa-calendar"></i>
+                        <input type="date" id="start-date" placeholder="Start Date">
+                    </label>
+                    <span class="separator">To</span>
+                    <label class="date-input">
+                        <i class="fa-solid fa-calendar"></i>
+                        <input type="date" id="end-date">
+                    </label>
+                </div>
+
+
+                <button onclick="searchUsers()">Search</button>
+            </div>
+            <div id="res"></div>
+        </div>
+
+    </section>
+</main>
 
 <script>
+    function toggleSearchSection(type){
+        document.querySelectorAll(".src_name").forEach(e=>{
+            e.style.display='none';
+        })
+        switch (type) {
+            case 1:
+                document.getElementById('src-name').style.display='flex'
+                break;
+            case 2:
+                document.getElementById('src-date').style.display='flex'
+                break;
+        
+            default:
+                break;
+        }
+    }
     function formatLastLogin(timestamp) {
-    const date = new Date(timestamp);
+        const date = new Date(timestamp);
 
-    // Extract hours and minutes in the desired format
-    const hours = date.getHours().toString().padStart(2, '0');
-    const minutes = date.getMinutes().toString().padStart(2, '0');
+        // Extract hours and minutes in the desired format
+        const hours = date.getHours().toString().padStart(2, '0');
+        const minutes = date.getMinutes().toString().padStart(2, '0');
 
-    // Extract day, month, and year
-    const day = date.getDate().toString().padStart(2, '0');
-    const month = date.toLocaleString('default', { month: 'short' }); // e.g., "Jan"
-    const year = date.getFullYear().toString().slice(-2); // Last 2 digits of the year
+        // Extract day, month, and year
+        const day = date.getDate().toString().padStart(2, '0');
+        const month = date.toLocaleString('default', { month: 'short' }); // e.g., "Jan"
+        const year = date.getFullYear().toString().slice(-2); // Last 2 digits of the year
 
-    // Combine them into the desired format
-    return `${hours}:${minutes} | ${day} ${month}, ${year}`;
-}
-async function searchUsers() {
-            const startDate = document.getElementById('start-date').value;
-            const endDate = document.getElementById('end-date').value;
-            const resultsDiv = document.getElementById('res');
+        // Combine them into the desired format
+        return `${ hours }:${ minutes } | ${ day } ${ month }, ${ year }`;
+    }
+    async function searchUsers() {
+        const startDate = document.getElementById('start-date').value;
+        const endDate = document.getElementById('end-date').value;
+        const resultsDiv = document.getElementById('res');
 
-            // Clear previous results
-            resultsDiv.innerHTML = '';
+        // Clear previous results
+        resultsDiv.innerHTML = '';
 
-            if (!startDate || !endDate) {
-                alert('Please select both start and end dates.');
-                return;
-            }
+        if (!startDate || !endDate) {
+            alert('Please select both start and end dates.');
+            return;
+        }
 
-            try {
-                // Make the API request
-                const response = await fetch(`/users-by-date/?start_date=${startDate}&end_date=${endDate}`);
-                const data = await response.json();
+        try {
+            // Make the API request
+            const response = await fetch(`/users-by-date/?start_date=${ startDate }&end_date=${ endDate }`);
+            const data = await response.json();
 
-                if (data.success) {
-                    console.log(data)
-                    if (data.users.length > 0) {
-                        data.users.forEach(user => {
-                            let dateJoined = formatLastLogin(user.date_joined)
-                            const userCard = document.createElement('div');
-                            userCard.className = 'user-card';
-                            userCard.innerHTML = `
+            if (data.success) {
+                console.log(data)
+                if (data.users.length > 0) {
+                    data.users.forEach(user => {
+                        let dateJoined = formatLastLogin(user.date_joined)
+                        const userCard = document.createElement('div');
+                        userCard.className = 'user-card';
+                        userCard.innerHTML = `
                                 <p><strong>Username:</strong> ${user.username}</p>
                                 <p><strong>Email:</strong> ${user.email}</p>
                                 <p><strong>Joined Date:</strong> ${dateJoined}</p>
                             `;
-                            resultsDiv.appendChild(userCard);
-                        });
-                    } else {
-                        resultsDiv.innerHTML = '<p>No users found in the given date range.</p>';
-                    }
+
+                        resultsDiv.appendChild(userCard);
+                    });
                 } else {
-                    alert(data.message || 'Something went wrong.');
+                    resultsDiv.innerHTML = '<p>No users found in the given date range.</p>';
                 }
-            } catch (error) {
-                console.error('Error fetching users:', error);
-                alert('An error occurred while fetching users. Please try again later.');
+            } else {
+                alert(data.message || 'Something went wrong.');
             }
+        } catch (error) {
+            console.error('Error fetching users:', error);
+            alert('An error occurred while fetching users. Please try again later.');
         }
+    }
     async function searchUser() {
         const username = document.getElementById('username').value;
         const resultsDiv = document.getElementById('results');
@@ -198,7 +610,7 @@ async function searchUsers() {
         resultsList.innerHTML = '';
 
         try {
-            const response = await fetch(`/search/?username=${encodeURIComponent(username)}`);
+            const response = await fetch(`/search/?username=${ encodeURIComponent(username) }`);
             const data = await response.json();
 
             if (data.success && data.users.length > 0) {
@@ -222,4 +634,5 @@ async function searchUsers() {
         }
     }
 </script>
+
 {% endblock body %}

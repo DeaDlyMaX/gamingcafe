@@ -31,10 +31,57 @@
     </div>
 
 
-    <div class="container" style="position: absolute; top: 180px;">
-        <!-- Image Section -->
-        <div class="image-section" id="image-section-id">
-            <img style="margin-top: 6rem;
+    <!-- Booking Section -->
+    <!-- <div class="booking-section">
+        <h2>Book Your Slut {{ avl_pc }}</h2>
+        <div id="avl-pc"></div>
+        <form onsubmit="generateBill(event)">
+            <label for="duration">Duration (hours):</label>
+            <select id="duration" name="duration" onchange="updateEndTime()">
+                <option value="1">1 hour</option>
+                <option value="2">2 hours</option>
+                <option value="3">3 hours</option>
+                <option value="4">4 hours</option>
+                <option value="5">5 hours</option>
+                <option value="6">6 hours</option>
+                <option value="7">7 hours</option>
+                <option value="8">8 hours</option>
+                <option value="9">9 hours</option>
+                <option value="10">10 hours</option>
+            </select>
+
+            <label for="start-time">Start Time:</label>
+            <input type="time" id="start-time" name="start-time" onchange="updateStartTimeDisplay()">
+            <input type="text" id="start-time-display" placeholder="Start time (AM/PM)" disabled>
+
+            <label for="end-time">End Time:</label>
+            <input type="text" id="end-time" name="end-time" placeholder="End time will be shown here" disabled>
+
+            <button type="submit">Book Slot</button>
+        </form>
+    </div>
+</div> -->
+
+<!-- Bill Section -->
+<div id="bill" class="bill-container" style="position: absolute; top: 21%; left: 36%;">
+    <img src="logo.png" alt="Website Logo">
+    <h3>Booking Receipt</h3>
+    <div class="bill-details" id="bill-details">
+        <p><strong>Transaction ID:</strong> <span id="transaction-id"></span></p>
+        <p><strong>User ID:</strong> <span id="user-id"></span></p>
+        <p><strong>Slot Number:</strong> <span id="slot-number"></span></p>
+        <p><strong>Start Time:</strong> <span id="bill-start-time"></span></p>
+        <p><strong>End Time:</strong> <span id="bill-end-time"></span></p>
+        <p><strong>Duration:</strong> <span id="bill-duration"></span> hours</p>
+        <p><strong>Total Amount:</strong> ₹<span id="bill-amount"></span></p>
+        <p><strong>Payment Time & Date:</strong> <span id="payment-time"></span></p>
+    </div>
+</div> {% endcomment %}
+
+<div class="container" >
+    <!-- Image Section -->
+    <div class="image-section" id="image-section-id">
+        <img style="margin-top: 6rem;
     margin-left: 2rem;" src="{% static 'img/high_end_pc_2.png' %}" alt="High-End PC">
         </div>
 
@@ -217,7 +264,35 @@
             default:
                 break;
         }
-    }
+
+        url = "{% static 'img/controler.jpeg' %}";
+        document.getElementById('booking-section-id').style.backgroundImage = `url('${url}')`;
+    </script>
+
+</div>
+<div id="overlay" style="display: none;height: 100vh; width: 100vw; z-index: 5; background-color: rgba(0, 0, 0, 0.541); "></div>
+<div id="bill" class="bill-container modal " style="position: absolute; top: 21%; left: 36%;">
+    <img src="logo.png" alt="Website Logo">
+    <h3>Booking Receipt</h3>
+    <div class="bill-details">
+        <p><strong>Transaction ID:</strong> <span id="transaction-id"></span></p>
+        <p><strong>User ID:</strong> <span id="user-id"></span></p>
+        <p><strong>Slot Number:</strong> <span id="slot-number"></span></p>
+        <p><strong>Start Time:</strong> <span id="bill-start-time"></span></p>
+        <p><strong>End Time:</strong> <span id="bill-end-time"></span></p>
+        <p><strong>Duration:</strong> <span id="bill-duration"></span> hours</p>
+        <p><strong>Total Amount:</strong> ₹<span id="bill-amount"></span></p>
+        <p><strong>Payment Time & Date:</strong> <span id="payment-time"></span></p>
+    </div>
+</div>
+<script>
+    // function closeModal(){
+    //     document.querySelectorAll(".modal").forEach(e=>{
+    //         if(!e.classList.contains("none")){
+    //             e.classList.add("none")
+    //         }
+    //     })
+    // }
 </script>
 <!-- {% comment %} <script>
     function formatAMPM(hours, minutes) {
@@ -467,8 +542,8 @@
         document.getElementById('bill-duration').textContent = duration;
         document.getElementById('bill-amount').textContent = totalAmount;
         document.getElementById('payment-time').textContent = paymentTime;
-        document.getElementById('bill').style.display = 'flex';
-        document.getElementById('overlay').style.display = 'block';
+        document.getElementById('bill-details').style.display = 'flex';
+        // document.getElementById('overlay').style.display = 'block';
     }
 </script>
 {% endblock body %}
