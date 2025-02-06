@@ -7,9 +7,9 @@
 <link rel="stylesheet" href="{% static 'booking.css' %}">
 {% include "components/navbar.html" %}
 <div class="btn_cng" style="display: flex; position: absolute;
-    top: 110PX; gap: 40px; left:34% ;">
-<button id="monthly" onclick="switchSection(1)" class="active button type1">Bill Monthly</button>
-<button id="yearly" onclick="switchSection(2)" class="button type1">Bill Yearly </button></div>
+    top: 110PX; gap: 40px; left:37% ;">
+<button id="monthly" onclick="switchSection(1)" class="active button type1">Book Pass</button>
+<button id="yearly" onclick="switchSection(2)" class="button type1">Book Slot</button></div>
 <section id="book-slot" class="booking-sec" hidden>
 
 
@@ -76,9 +76,9 @@
         <p><strong>Total Amount:</strong> ₹<span id="bill-amount"></span></p>
         <p><strong>Payment Time & Date:</strong> <span id="payment-time"></span></p>
     </div>
-</div> {% endcomment %}
+</div>
 
-<div class="container" >
+<div class="container" style="margin-top: 19rem;">
     <!-- Image Section -->
     <div class="image-section" id="image-section-id">
         <img style="margin-top: 6rem;
@@ -205,7 +205,7 @@
                 <div class="card-header">
                     <h2>Cafe Pass</h2>
                     <p class="price"><span id="free-price"></span>Silver</p>
-                    <a href="#" class="button">₹3000</a>
+                    <a href="#" class="button" onclick="setPrime('{{user.id}}')">₹3000</a>
                 </div>
                 <ul class="features">
                     <li>Email APIs, SMTP Relay, and Webhooks</li>
@@ -264,7 +264,7 @@
             default:
                 break;
         }
-
+    }
         url = "{% static 'img/controler.jpeg' %}";
         document.getElementById('booking-section-id').style.backgroundImage = `url('${url}')`;
     </script>
@@ -542,8 +542,19 @@
         document.getElementById('bill-duration').textContent = duration;
         document.getElementById('bill-amount').textContent = totalAmount;
         document.getElementById('payment-time').textContent = paymentTime;
-        document.getElementById('bill-details').style.display = 'flex';
+        document.getElementById('bill').style.display = 'flex';
         // document.getElementById('overlay').style.display = 'block';
+    }
+    function setPrime(user_id){
+        fetch(`http://127.0.0.1:8000/api/is-prime/${user_id}/`, {
+        method: "POST",
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log("Response:", data)
+        alert(data.message)
+    })
+    .catch(error => console.error("Error:", error));
     }
 </script>
 {% endblock body %}

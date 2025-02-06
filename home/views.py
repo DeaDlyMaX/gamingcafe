@@ -208,3 +208,13 @@ def get_users_by_date(request):
         return JsonResponse({'success': True, 'users': user_list})
     except ValueError:
         return JsonResponse({'success': False, 'message': 'Invalid date format. Use YYYY-MM-DD.'}, status=400)
+
+
+@csrf_exempt  # Disable CSRF for testing
+def make_user_prime(request, user_id):
+    if request.method == 'POST':
+        user = get_object_or_404(User, id=user_id)
+        user.is_prime = True
+        user.save()
+        return JsonResponse({"message": "User is now a prime member", "user_id": user.id, "is_prime": user.is_prime, 'success':'true'})
+    return JsonResponse({"error": "Invalid request method"}, status=400)

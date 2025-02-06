@@ -14,6 +14,7 @@ urlpatterns = [
     path('save-booking/', views.save_booking, name='save_booking'),
     path('book-pc/', views.book_pc, name='book_pc'),
     path('search-user/', views.searchUser, name='searchUser'),
+    path('api/is-prime/<int:user_id>/', views.make_user_prime, name='make_user_prime'),
     
     path('search/', views.search_user, name='search_user'),
     path('users-by-date/', views.get_users_by_date, name='get_users_by_date'),
